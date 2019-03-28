@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.*;
 import projet.description.Local;
 
-public class LocalDAO extends DAO <Local> {
+public class LocalDAO extends DAO<Local> {
 
     /**
      * création d'un local sur base des valeurs de son objet métier
@@ -29,7 +29,7 @@ public class LocalDAO extends DAO <Local> {
 
             int n = pstm1.executeUpdate();
             if (n == 0) {
-                throw new SQLException("erreur de creation (local), aucune ligne n'a été créée");
+                throw new SQLException("Erreur de creation (local), aucune ligne n'a été créée");
             }
 
             pstm2.setString(1, obj.getSigle());
@@ -44,14 +44,13 @@ public class LocalDAO extends DAO <Local> {
                     throw new SQLException("Erreur de création d'un nouveau local, introuvable");
                 }
             }
-        } 
-        
-        
+        }
+
     }
 
     /**
      * récupération des données d'un local sur base de son identifiant
-     *local@throws SQLException local inconnu
+     * local@throws SQLException local inconnu
      *
      * @param sigle
      * @return local trouvé
@@ -81,12 +80,11 @@ public class LocalDAO extends DAO <Local> {
         }
 
     }
-    
+
     /* SURCHARGE */
-    
-     @Override
+    @Override
     public Local read(int idlocal) throws SQLException {
-        
+
         String req = "select * from pro_local where idlocal = ?";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
@@ -94,13 +92,12 @@ public class LocalDAO extends DAO <Local> {
             pstm.setInt(1, idlocal);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
-                    
-                  
-                   String sigle = rs.getString("SIGLE");
+
+                    String sigle = rs.getString("SIGLE");
                     String places = rs.getString("PLACES");
                     String description = rs.getString("DESCRIPTION");
 
-                    return new Local( idlocal, sigle, places, description);
+                    return new Local(idlocal, sigle, places, description);
 
                 } else {
                     throw new SQLException("Sigle du local inconnu");
@@ -108,10 +105,8 @@ public class LocalDAO extends DAO <Local> {
 
             }
         }
-       
+
     }
-    
-    
 
     /**
      * mise à jour des données d'un local sur base de son identifiant
@@ -131,7 +126,7 @@ public class LocalDAO extends DAO <Local> {
             pstm.setString(2, obj.getDescription());
 
             int n = pstm.executeUpdate();
-            
+            System.out.println("Les données du local ont été correctement mise à jour");
 
         } catch (SQLException e) {
             System.out.println("Erreur lors de la MAJ du local");
@@ -152,41 +147,34 @@ public class LocalDAO extends DAO <Local> {
 
             pstm.setString(1, obj.getSigle());
             int n = pstm.executeUpdate();
-            
-            if (n == 0) {
-                throw new SQLException("Aucune ligne effacée : le local n'existe pas dans la BDD ! ");
-            }else{
-                System.out.println("Le local a été correctement supprimé de la base de données ! ");
-            }
 
+            System.out.println("Le local a été correctement supprimé de la base de données ! ");
+
+        } catch (SQLException e) {
+            System.out.println("Aucune ligne effacée : le local n'existe pas dans la BDD !");
         }
     }
 
-    
-    
-      
     public List<Local> rechDescription(String descriptionrech) throws SQLException {
-          
+
         List<Local> searchdesc = new ArrayList<>();
-        
-        
-        
+
         String req = "select * from pro_local where lower(description) like ? ";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
-            pstm.setString(1, "%"+descriptionrech+"%");
+            pstm.setString(1, "%" + descriptionrech + "%");
             try (ResultSet rs = pstm.executeQuery()) {
                 boolean trouve = false;
                 while (rs.next()) {
-                    
+
                     trouve = true;
-                    
+
                     int idlocal = rs.getInt("IDLOCAL");
                     String sigle = rs.getString("SIGLE");
                     String places = rs.getString("PLACES");
                     String description = rs.getString("DESCRIPTION");
-                    
-                    searchdesc.add(new Local(idlocal,sigle,places,description));
+
+                    searchdesc.add(new Local(idlocal, sigle, places, description));
                 }
 
                 if (!trouve) {
@@ -196,13 +184,7 @@ public class LocalDAO extends DAO <Local> {
                 }
             }
         }
-        
-        
+
     }
-
-    
-
-   
-   
 
 }

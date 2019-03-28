@@ -10,12 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import projet.description.Cours;
 
-
 /**
  *
  * @author Florence
  */
-public class CoursDAO extends DAO <Cours>{
+public class CoursDAO extends DAO<Cours> {
 
     @Override
     public Cours create(Cours obj) throws SQLException {
@@ -27,7 +26,6 @@ public class CoursDAO extends DAO <Cours>{
 
             pstm1.setString(1, obj.getMatiere());
             pstm1.setInt(2, obj.getHeures());
-            
 
             int n = pstm1.executeUpdate();
             if (n == 0) {
@@ -36,7 +34,7 @@ public class CoursDAO extends DAO <Cours>{
 
             pstm2.setString(1, obj.getMatiere());
             pstm2.setInt(2, obj.getHeures());
-            
+
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
                     int idcours = rs.getInt(1);
@@ -46,10 +44,9 @@ public class CoursDAO extends DAO <Cours>{
                     throw new SQLException("Erreur de création d'un nouveau cours, introuvable");
                 }
             }
-        } 
+        }
     }
 
-    
     @Override
     public Cours read(int idcours) throws SQLException {
         String req = "select * from pro_cours where idcours = ?";
@@ -59,9 +56,7 @@ public class CoursDAO extends DAO <Cours>{
             pstm.setInt(1, idcours);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
-                    
-                  
-                   
+
                     String matiere = rs.getString("MATIERE");
                     int heures = rs.getInt("HEURES");
 
@@ -74,7 +69,7 @@ public class CoursDAO extends DAO <Cours>{
             }
         }
     }
-    
+
     public Cours readMatiere(String matiere) throws SQLException {
         String req = "select * from pro_cours where lower(matiere) = ?";
 
@@ -83,8 +78,8 @@ public class CoursDAO extends DAO <Cours>{
             pstm.setString(1, matiere);
             try (ResultSet rs = pstm.executeQuery()) {
                 if (rs.next()) {
-                    
-                  int idcours = rs.getInt("IDCOURS");
+
+                    int idcours = rs.getInt("IDCOURS");
                     int heures = rs.getInt("HEURES");
 
                     return new Cours(idcours, matiere, heures);
@@ -99,25 +94,23 @@ public class CoursDAO extends DAO <Cours>{
 
     @Override
     public Cours update(Cours obj) throws SQLException {
-        
-        String req = "update pro_local set heures=? where matiere=?";
+
+        String req = "update pro_cours set heures=? where matiere=?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            
             pstm.setString(2, obj.getMatiere());
             pstm.setInt(1, obj.getHeures());
-            
-            
-            
+
             int n = pstm.executeUpdate();
-            if (n == 0) {
-                throw new SQLException("Aucune ligne cours a été mise à jour");
-            }else{
-                System.out.println("Informations mise à jour !");
-            }
-            return read(obj.getIdcours());
+
+            System.out.println("Informations mise à jour !");
+            
+        } catch (SQLException e) {
+            System.out.println("Aucune ligne cours a été mise à jour");
         }
-        
+
+        return obj;
+
     }
 
     @Override
@@ -127,14 +120,12 @@ public class CoursDAO extends DAO <Cours>{
 
             pstm.setString(1, obj.getMatiere());
             int n = pstm.executeUpdate();
-            
-            if (n == 0) {
-                throw new SQLException("Aucune ligne effacée : le cours n'existe pas dans la BDD ! ");
-            }else{
-                System.out.println("Le cours a été correctement supprimé de la base de données ! ");
-            }
 
+            System.out.println("Le cours a été correctement supprimé de la base de données ! ");
+
+        } catch (SQLException e) {
+            System.out.println("Aucune ligne effacée : le cours n'existe pas dans la BDD ! ");
         }
     }
-    
+
 }

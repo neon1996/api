@@ -65,6 +65,7 @@ public class Gestion {
 
                 default:
                     System.out.println("Erreur");
+                    break;
             }
         } while (choix != 4);
         DBConnection.closeConnection();
@@ -99,6 +100,7 @@ public class Gestion {
                     break;
                 default:
                     System.out.println("Erreur");
+                    break;
             }
         } while (choix != 3);
         DBConnection.closeConnection();
@@ -114,7 +116,7 @@ public class Gestion {
         do {
             System.out.println("Menu de Gestion des Formateurs : "
                     + "\n 1- Création d'un nouveau formateur."
-                    + "\n 2- Recherche d'un formateur (nom)."
+                    + "\n 2- Recherche d'un formateur (via matricule)."
                     + "\n 3- Retour au menu principal.");
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
@@ -131,6 +133,7 @@ public class Gestion {
                     break;
                 default:
                     System.out.println("Erreur");
+                    break;
             }
         } while (choix != 3);
 
@@ -184,6 +187,7 @@ public class Gestion {
 
                 default:
                     System.out.println("Erreur");
+                    break;
             }
         } while (choix != 4);
 
@@ -268,6 +272,8 @@ public class Gestion {
                         System.out.println("Entrez le nombre de place disponible : ");
                         String places = sc.nextLine();
                         localActuel.setPlaces(places);
+                        
+                       //Appel de la méthode update afin d'opérer les changements dans la bdd
                         localDAO.update(localActuel);
                         break;
 
@@ -275,6 +281,8 @@ public class Gestion {
                         System.out.println("Entrez la nouvelle description du local: ");
                         String description = sc.nextLine();
                         localActuel.setDescription(description);
+                        
+                        //Appel de la méthode update afin d'opérer les changements dans la bdd
                         localDAO.update(localActuel);
                         break;
 
@@ -396,6 +404,8 @@ public class Gestion {
                         int heures = sc.nextInt();
                         sc.skip("\n");
                         coursActuel.setHeures(heures);
+                        
+                        //Appel de la méthode update afin d'opérer les changements dans la bdd
                         coursDAO.update(coursActuel);
                         break;
 
@@ -404,7 +414,7 @@ public class Gestion {
                     default:
                         System.out.println("Erreur");
                 }
-            } while (choix != 3);
+            } while (choix != 2);
 
         } catch (SQLException e) {
             System.out.println("erreur " + e.getMessage());
@@ -462,10 +472,10 @@ public class Gestion {
 
     public void rechercheFormateur() throws SQLException {
 
-        System.out.println("Entrer le nom du formateur :");
-        String nom = sc.nextLine().toLowerCase();
-        formateurActuel = formateurDAO.readNom(nom);
-        System.out.println("Cours recherché : " + formateurActuel);
+        System.out.println("Entrer le matricule du formateur :");
+        String matricule = sc.nextLine();
+        formateurActuel = formateurDAO.readMatricule(matricule);
+        System.out.println("Formateur recherché : " + formateurActuel);
         int choix = 0;
         do {
 
@@ -504,7 +514,7 @@ public class Gestion {
 
             do {
                 System.out.println("\n Modifier :"
-                        + "\n 1- Matricule. "
+                        + "\n 1- Nom et prenom. "
                         + "\n 2- Adresse (complete)."
                         + "\n 3- Telephone"
                         + "\n 4- Retour au menu précédent. "
@@ -514,32 +524,42 @@ public class Gestion {
 
                 switch (choix) {
                     case 1:
-                        System.out.println("Entrez le nouveau matricule : ");
-                        String matricule = sc.nextLine();
-                        formateurActuel.setMatricule(matricule);
+                        System.out.println("Entrez le nouveau nom : ");
+                        String nom = sc.nextLine();
+                        formateurActuel.setNom(nom);
+                        
+                        
+                        System.out.println("Entrez le nouveau prenom : ");
+                        String prenom = sc.nextLine();
+                        formateurActuel.setPrenom(prenom);
+                        
+                        //Appel de la méthode update afin d'opérer les changements dans la bdd
                         formateurDAO.update(formateurActuel);
+                        
                         break;
 
                     case 2:
                         System.out.println("Entrez le nouveau numero : ");
                         String numero  = sc.nextLine();
                         formateurActuel.setNumero(numero);
-                        formateurDAO.update(formateurActuel);
+                        
                         
                         System.out.println("Entrez la nouvelle rue : ");
                         String rue = sc.nextLine();
                         formateurActuel.setRue(rue);
-                        formateurDAO.update(formateurActuel);
+                        
                         
                         System.out.println("Entrez la nouvelle localite : ");
                         String localite = sc.nextLine();
                         formateurActuel.setLocalite(localite);
-                        formateurDAO.update(formateurActuel);
+                        
                         
                         System.out.println("Entrez le nouveau code postal : ");
                         int cp = sc.nextInt();
                         sc.skip("\n");
                         formateurActuel.setCp(cp);
+                        
+                        //Appel de la méthode update afin d'opérer les changements dans la bdd
                         formateurDAO.update(formateurActuel);
                         break;
                         
@@ -547,6 +567,8 @@ public class Gestion {
                         System.out.println("Entrez le nouveau numéro de téléphone : ");
                         String tel = sc.nextLine();
                         formateurActuel.setTelephone(tel);
+                        
+                        //Appel de la méthode update afin d'opérer les changements dans la bdd
                         formateurDAO.update(formateurActuel);
                         break;
                     case 4:
