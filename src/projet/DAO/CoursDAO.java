@@ -1,12 +1,14 @@
 package projet.DAO;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import myconnections.DBConnection;
 import projet.metier.Cours;
 
 public class CoursDAO extends DAO<Cours> {
-
+Connection dbConnect = DBConnection.getConnection();
     /**
      * création d'un local sur base des valeurs de son objet métier
      * (projet.metier)

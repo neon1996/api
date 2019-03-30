@@ -3,10 +3,11 @@ package projet.DAO;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
+import myconnections.DBConnection;
 import projet.metier.Formateur;
 
 public class FormateurDAO extends DAO<Formateur> {
-
+Connection dbConnect = DBConnection.getConnection();
     /**
      * création d'un local sur base des valeurs de son objet métier
      * (projet.metier)

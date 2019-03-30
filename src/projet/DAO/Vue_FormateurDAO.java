@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class Vue_FormateurDAO extends DAO<Vue_Formateur> {
 
-    Connection dbConnect = DBConnection.getConnection();
+   Connection dbConnect = DBConnection.getConnection();
 
     
     public List<Vue_Formateur> SessionFormateur(int idform) throws SQLException {
@@ -35,10 +35,10 @@ public class Vue_FormateurDAO extends DAO<Vue_Formateur> {
                     VueForm.add(new Vue_Formateur(idform, nom, prenom, matiere, idsesscours, datedebut, datefin));
                 }
             } catch (SQLException e) {
-                System.out.println("Erreur affichage vue somme medicament: " + e);
+                System.out.println("Erreur affichage vue formateur " + e);
             }
         } catch (SQLException e) {
-            System.out.println("Erreur preparation de la requete affichage vue : " + e);
+            System.out.println("Erreur vue formateur " + e);
         }
         return VueForm;
     }

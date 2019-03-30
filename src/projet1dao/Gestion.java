@@ -57,7 +57,7 @@ public class Gestion {
                     + "\n 1- Cours."
                     + "\n 2- Formateur."
                     + "\n 3- Local."
-                    + "\n 4- Informations Session"
+                    + "\n 4- Session. (Vue)"
                     + "\n 5- Sortie du programme.");
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
@@ -112,9 +112,7 @@ public class Gestion {
                 case 2:
                     rechercheCours();
                     break;
-                case 3:
-                    System.out.println("Retour au programme principal");
-                    break;
+                case 3:break;
                 default:
                     System.out.println("Erreur");
                     break;
@@ -145,9 +143,7 @@ public class Gestion {
                 case 2:
                     rechercheFormateur();
                     break;
-                case 3:
-                    System.out.println("Retour au menu principal.");
-                    break;
+                case 3:break;
                 default:
                     System.out.println("Erreur");
                     break;
@@ -198,8 +194,7 @@ public class Gestion {
                     rechercheDescLocal();
                     break;
 
-                case 4:
-                    break;
+                case 4:break;
 
                 default:
                     System.out.println("Erreur");
@@ -217,8 +212,7 @@ public class Gestion {
 
         /*Vue_SessionHeuresDAO = new Vue_SessionHeuresDAO();
         Vue_SessionHeuresDAO.setConnection(dbConnect);*/
-        
-       int choix = 0;
+        int choix = 0;
         do {
             System.out.println("Menu de Gestion des Sessions :"
                     + "\n 1- Afficher les sessions d'un formateur (ID)."
@@ -227,14 +221,15 @@ public class Gestion {
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
             sc.skip("\n");
-            
+
             switch (choix) {
-                case 1: SessionProf();
+                case 1:
+                    SessionProf();
                     break;
-                case 2:SessionHeures();
+                case 2:
+                    SessionHeures();
                     break;
-                case 3:
-                    break;
+                case 3:break;
                 default:
                     System.out.println("Erreur");
                     break;
@@ -272,7 +267,7 @@ public class Gestion {
         String sig = sc.nextLine();
         localActuel = localDAO.readSigle(sig);
         System.out.println("Local recherché : " + localActuel);
-        int choix1 = 0;
+        int choix = 0;
         do {
 
             System.out.println(" Que souhaitez-vous faire ? : "
@@ -281,10 +276,10 @@ public class Gestion {
                     + "\n 3- Retour ");
 
             System.out.println("\nEntrer votre choix : ");
-            choix1 = sc.nextInt();
+            choix = sc.nextInt();
             sc.skip("\n");
 
-            switch (choix1) {
+            switch (choix) {
 
                 case 1:
                     modifLocal();
@@ -298,7 +293,7 @@ public class Gestion {
                 default:
                     System.out.println("Erreur");
             }
-        } while (choix1 != 3);
+        } while (choix != 3);
 
     }
 
@@ -309,7 +304,7 @@ public class Gestion {
         try {
 
             do {
-                System.out.println("\nQue voulez-vous modifier?:"
+                System.out.println("\n Que voulez-vous modifier?:"
                         + "\n 1- Nombre de places. "
                         + "\n 2- Description. "
                         + "\n 3- Retour au menu précédent."
@@ -403,19 +398,19 @@ public class Gestion {
         String matiere = sc.nextLine().toLowerCase();
         coursActuel = coursDAO.readMatiere(matiere);
         System.out.println("Cours recherché : " + coursActuel);
-        int choix1 = 0;
+        int choix = 0;
         do {
 
-            System.out.println("\nQue souhaitez-vous faire ? : "
-                    + "\n\n 1- Modification des infos du Cours :"
+            System.out.println("\n Que souhaitez-vous faire ? : "
+                    + "\n 1- Modification des infos du Cours :"
                     + "\n 2- Supprimer le cours :"
                     + "\n 3- Retour ");
 
-            System.out.println("\nEntrer votre choix : ");
-            choix1 = sc.nextInt();
+            System.out.println("\n Entrer votre choix : ");
+            choix = sc.nextInt();
             sc.skip("\n");
 
-            switch (choix1) {
+            switch (choix) {
 
                 case 1:
                     modifCours();
@@ -430,7 +425,7 @@ public class Gestion {
                 default:
                     System.out.println("Erreur");
             }
-        } while (choix1 != 3);
+        } while (choix != 3);
 
     }
 
@@ -546,9 +541,7 @@ public class Gestion {
                 case 2:
                     deleteFormateur();
                     GestionFormateur();
-                case 3:
-                    System.out.println("Retour au menu précédent ! ");
-                    break;
+                case 3:break;
 
                 default:
                     System.out.println("Erreur");
@@ -643,33 +636,39 @@ public class Gestion {
 
 //================================= PARTIE SESSION  =================================
     public void SessionProf() {
-        
+
+        // Connection dbConnect = DBConnection.getConnection();
         Vue_FormateurDAO vueForm = new Vue_FormateurDAO();
         System.out.println("\n Afficher la/les session(s) d'un formateur");
         System.out.println("\n Entrer l'identifiant du formateur : ");
         int idform = sc.nextInt();
         sc.skip("\n");
-try{
+        try {
             System.out.println(vueForm.SessionFormateur(idform));
         } catch (SQLException e) {
-            System.out.println("Erreur: "+e);
+            System.out.println("Erreur: " + e);
         }
-        
+
     }
 
     public void SessionHeures() {
+// Connection dbConnect = DBConnection.getConnection();
+
+        Vue_SessionHeuresDAO vueHeures = new Vue_SessionHeuresDAO();
+        System.out.println("\n Afficher le nbr d'heures total d'une session :");
+        System.out.println("\n Entrer l'identifiant de la session : ");
+        int idsesscours = sc.nextInt();
+        sc.skip("\n");
+        try {
+            System.out.println(vueHeures.SessionHeures(idsesscours));
+        } catch (SQLException e) {
+            System.out.println("Erreur: " + e);
+        }
 
     }
 //================================= PARTIE MAIN  =================================
 
     public static void main(String[] args) throws SQLException {
-
-       LocalDAO ld = new LocalDAO(); // permet d'appeler la méthode readSigle dans LocalDAO afin de ne pas faire une surcharge des méthodes CRUD.
-        FormateurDAO fd = new FormateurDAO();
-        CoursDAO cd = new CoursDAO();
-        Vue_FormateurDAO vfd = new Vue_FormateurDAO();
-        Vue_SessionHeuresDAO shd = new Vue_SessionHeuresDAO();
-
         Gestion g = new Gestion(); //nom du fichier de gestion
 
         // appelle de la fonction afin de lancer le menu de départ.
