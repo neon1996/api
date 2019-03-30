@@ -8,9 +8,9 @@ public class Vue_Formateur {
      * Classe métier correspond à la vue "SESS_FORMATEUR" dans la BDD.
      */
     protected int idform;
-    protected String nom;
-    protected String prenom;
-    protected String matiere;
+    protected String nom; //formateur
+    protected String prenom; //formateur
+    protected String matiere; //donné par le formateur
     protected int sesscours;
     protected LocalDate dateDebut;
     protected LocalDate dateFin;

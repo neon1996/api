@@ -7,7 +7,9 @@ import myconnections.DBConnection;
 import projet.metier.Local;
 
 public class LocalDAO extends DAO<Local> {
-Connection dbConnect = DBConnection.getConnection();
+
+    Connection dbConnect = DBConnection.getConnection();
+
     /**
      * création d'un local sur base des valeurs de son objet métier
      * (projet.metier)

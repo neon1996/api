@@ -9,9 +9,15 @@ import java.sql.*;
 
 public class Vue_FormateurDAO extends DAO<Vue_Formateur> {
 
-   Connection dbConnect = DBConnection.getConnection();
+    /**
+     * récupération des données de la vue SESS_FORMATEUR sur base de son
+     * identifiant.      *
+     * @param idform
+     *
+     * @throws java.sql.SQLException
+     */
+    Connection dbConnect = DBConnection.getConnection();
 
-    
     public List<Vue_Formateur> SessionFormateur(int idform) throws SQLException {
 
         List<Vue_Formateur> VueForm = new ArrayList<>();

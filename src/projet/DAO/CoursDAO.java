@@ -10,12 +10,11 @@ import projet.metier.Cours;
 public class CoursDAO extends DAO<Cours> {
 Connection dbConnect = DBConnection.getConnection();
     /**
-     * création d'un local sur base des valeurs de son objet métier
-     * (projet.metier)
+     * création d'un cours sur base de son identifiant dans la bdd.
      *
      * @throws SQLException erreur de création
-     * @param obj local à créer
-     * @return local créé
+     * @param obj cours à créer
+     * @return cours créé
      */
     @Override
     public Cours create(Cours obj) throws SQLException {
@@ -49,11 +48,11 @@ Connection dbConnect = DBConnection.getConnection();
     }
     
     /**
-     * récupération des données d'un local sur base de son identifiant
-     * local@throws SQLException local inconnu
+     * récupération des données d'un cours sur base de son identifiant
+     * cours@throws SQLException local inconnu
      *
-     * @param sigle
-     * @return local trouvé
+     * @param idcours
+     * @return cours trouvé
      * @throws java.sql.SQLException
      */
 
@@ -79,7 +78,14 @@ Connection dbConnect = DBConnection.getConnection();
             }
         }
     }
-
+/**
+     * récupération des données d'un cours sur base de son nom
+     * cours@throws SQLException cours inconnu
+     *
+     * @param matiere
+     * @return cours trouvé
+     * @throws java.sql.SQLException
+     */
     public Cours readMatiere(String matiere) throws SQLException {
         String req = "select * from pro_cours where lower(matiere) = ?";
 
@@ -103,10 +109,10 @@ Connection dbConnect = DBConnection.getConnection();
     }
 
     /**
-     * mise à jour des données d'un local sur base de son identifiant
+     * mise à jour des données d'un Cours sur base de sa matiere
      *
-     * @return Local
-     * @param obj Local à mettre à jour
+     * @return Cours
+     * @param obj Cours à mettre à jour
      * @throws SQLException erreur de mise à jour
      */
     @Override
@@ -131,10 +137,10 @@ Connection dbConnect = DBConnection.getConnection();
     }
 
     /**
-     * effacement d'un local sur base de son identifiant
+     * effacement d'un cours sur base de sa matiere
      *
      * @throws SQLException erreur d'effacement
-     * @param obj local à effacer
+     * @param obj cours à effacer
      */
     @Override
     public void delete(Cours obj) throws SQLException {

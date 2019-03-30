@@ -9,12 +9,11 @@ import projet.metier.Formateur;
 public class FormateurDAO extends DAO<Formateur> {
 Connection dbConnect = DBConnection.getConnection();
     /**
-     * création d'un local sur base des valeurs de son objet métier
-     * (projet.metier)
+     * création d'un formateur sur base de son identifiant dans la bdd.
      *
      * @throws SQLException erreur de création
-     * @param obj local à créer
-     * @return local créé
+     * @param obj formateur à créer
+     * @return formateur créé
      */
     @Override
     public Formateur create(Formateur obj) throws SQLException {
@@ -41,12 +40,7 @@ Connection dbConnect = DBConnection.getConnection();
             pstm2.setString(1, obj.getMatricule());
             pstm2.setString(2, obj.getNom());
             pstm2.setString(3, obj.getPrenom());
-            /* pstm2.setString(4, obj.getNumero());
-            pstm2.setString(5, obj.getRue());
-            pstm2.setString(6, obj.getLocalite());
-            pstm2.setInt(7, obj.getCp());
-            pstm2.setString(8, obj.getTelephone());*/
-
+            
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
                     int idcours = rs.getInt(1);
@@ -60,11 +54,11 @@ Connection dbConnect = DBConnection.getConnection();
     }
     
     /**
-     * récupération des données d'un local sur base de son identifiant
-     * local@throws SQLException local inconnu
+     * récupération des données d'un formateur sur base de son identifiant
+     * formateur@throws SQLException formateur inconnu
      *
-     * @param sigle
-     * @return local trouvé
+     * @param idform
+     * @return formateur trouvé
      * @throws java.sql.SQLException
      */
 
@@ -95,6 +89,15 @@ Connection dbConnect = DBConnection.getConnection();
             }
         }
     }
+    
+    /**
+     * récupération des données d'un formateur sur base de son matricule
+     * formateur@throws SQLException formateur inconnu
+     *
+     * @param matricule
+     * @return formateur trouvé
+     * @throws java.sql.SQLException
+     */
 
     public Formateur readMatricule(String matricule) throws SQLException {
         String req = "select * from pro_formateur where matricule = ?";
@@ -124,10 +127,10 @@ Connection dbConnect = DBConnection.getConnection();
     }
 
     /**
-     * mise à jour des données d'un local sur base de son identifiant
+     * mise à jour des données d'un formateur sur base de son matricule
      *
-     * @return Local
-     * @param obj Local à mettre à jour
+     * @return Formateur
+     * @param obj Formateur à mettre à jour
      * @throws SQLException erreur de mise à jour
      */
     @Override
@@ -156,10 +159,10 @@ Connection dbConnect = DBConnection.getConnection();
     }
 
     /**
-     * effacement d'un local sur base de son identifiant
+     * effacement d'un formateur sur base de son matricule
      *
      * @throws SQLException erreur d'effacement
-     * @param obj local à effacer
+     * @param obj formateur à effacer
      */
     @Override
     public void delete(Formateur obj) throws SQLException {

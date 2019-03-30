@@ -43,6 +43,9 @@ public class Gestion {
 //================================= PARTIE GESTION  =================================
 
     public void GestionPrincipal() throws SQLException {
+        /**
+         * Démarre le programme et permet d'appeler les méthodes
+         */
         Connection dbConnect = DBConnection.getConnection();
 
         if (dbConnect == null) {
@@ -89,6 +92,18 @@ public class Gestion {
     }
 
     public void GestionCours() throws SQLException {
+        /**
+         * Mon menu "Gestion des cours" permet de créer/chercher/modifier les
+         * informations d'un cours. La création est basée sur l'identifiant
+         * auto-increment dans la BDD.
+         *
+         * La recherche d'un local s'effectue avec le nom du cours, ce qui
+         * permet de trouver le local et ensuite d'y apporter des modifications.
+         * Je ne peux modifier que le nbr d'heures des cours.
+         *
+         *
+         */
+
         Connection dbConnect = DBConnection.getConnection();
         coursDAO = new CoursDAO();
         coursDAO.setConnection(dbConnect);
@@ -112,7 +127,8 @@ public class Gestion {
                 case 2:
                     rechercheCours();
                     break;
-                case 3:break;
+                case 3:
+                    break;
                 default:
                     System.out.println("Erreur");
                     break;
@@ -123,6 +139,15 @@ public class Gestion {
 
     public void GestionFormateur() throws SQLException {
 
+        /**
+         * Mon menu "Gestion des Formateurs " permet de créer/chercher/modifier
+         * les informations d'un formateur. La création est basée sur
+         * l'identifiant (auto-increment) dans la BDD.
+         *
+         * La recherche d'un formateur s'effectue avec le matricule, ce qui
+         * permet de trouver le local et ensuite d'y apporter des modifications.
+         *
+         */
         Connection dbConnect = DBConnection.getConnection();
         formateurDAO = new FormateurDAO();
         formateurDAO.setConnection(dbConnect);
@@ -143,7 +168,8 @@ public class Gestion {
                 case 2:
                     rechercheFormateur();
                     break;
-                case 3:break;
+                case 3:
+                    break;
                 default:
                     System.out.println("Erreur");
                     break;
@@ -154,25 +180,26 @@ public class Gestion {
 
     public void GestionLocal() throws SQLException {
 
+        /**
+         * Mon menu "Gestion des locaux" permet de créer/chercher/modifier les
+         * informations d'un local. La création est basée sur l'identifiant
+         * auto-increment dans la BDD.
+         *
+         * La recherche d'un local s'effectue avec le SIGLE, ce qui permet de
+         * trouver le local et ensuite d'y apporter des modifications. ==> Je
+         * peux modifier le nombre de places disponibles et la description.
+         *
+         * La recherche grâce à la description (like) dans la colonne
+         * description de ma BDD. Elle permet l'affichage du/des local/locaux
+         * recherché(s), dans une ArrayList.
+         */
         Connection dbConnect = DBConnection.getConnection();
         localDAO = new LocalDAO();
         localDAO.setConnection(dbConnect);
 
         int choix = 0;
         do {
-            /**
-             * Mon menu "Gestion des locaux" permet de créer un nouveau local.
-             * La création est basée sur l'identifiant auto-increment dans la
-             * BDD.
-             *
-             * La recherche d'un local avec le SIGLE permet de trouver le local
-             * et ensuite d'y apporter des modifications. ==> Je peux modifier
-             * le nombre de places disponibles et la description.
-             *
-             * La recherche grâce à la description (requête avec un like) dans
-             * la colonne description de ma BDD. Elle permet l'affichage du/des
-             * local/locaux recherché(s), dans une ArrayList.
-             */
+
             System.out.println("Menu de Gestion des locaux : "
                     + "\n 1- Création d'un local."
                     + "\n 2- Recherche local (sigle)."
@@ -194,7 +221,8 @@ public class Gestion {
                     rechercheDescLocal();
                     break;
 
-                case 4:break;
+                case 4:
+                    break;
 
                 default:
                     System.out.println("Erreur");
@@ -205,18 +233,26 @@ public class Gestion {
     }
 
     public void GestionSession() throws SQLException {
-
+        /**
+         * Permet l'affichage des vues créées dans la BDD : 1) Afficher toutes
+         * les sessions d'un formateur en fonction de son identifiant dans la
+         * BDD. 2) Afficher le nombre total d'heures par session en fonction de
+         * l'identifiant de la session.
+         *
+         * @throws SQLException
+         */
         Connection dbConnect = DBConnection.getConnection();
         Vue_FormateurDAO = new Vue_FormateurDAO();
-        Vue_FormateurDAO.setConnection(dbConnect);
+        Vue_SessionHeuresDAO = new Vue_SessionHeuresDAO();
 
-        /*Vue_SessionHeuresDAO = new Vue_SessionHeuresDAO();
-        Vue_SessionHeuresDAO.setConnection(dbConnect);*/
+        Vue_FormateurDAO.setConnection(dbConnect);
+        Vue_SessionHeuresDAO.setConnection(dbConnect);
+
         int choix = 0;
         do {
             System.out.println("Menu de Gestion des Sessions :"
                     + "\n 1- Afficher les sessions d'un formateur (ID)."
-                    + "\n 2- Afficher le total d'heures par session."
+                    + "\n 2- Afficher le total d'heures d'une session."
                     + "\n 3- Retour au menu principal");
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
@@ -224,12 +260,13 @@ public class Gestion {
 
             switch (choix) {
                 case 1:
-                    SessionProf();
+                    SessionForm();
                     break;
                 case 2:
                     SessionHeures();
                     break;
-                case 3:break;
+                case 3:
+                    break;
                 default:
                     System.out.println("Erreur");
                     break;
@@ -256,7 +293,7 @@ public class Gestion {
             System.out.println("Local actuel : " + localActuel);
 
         } catch (SQLException e) {
-            System.out.println("Erreur : " + e);
+            System.out.println("Erreur (création local) : " + e);
         }
 
     }
@@ -337,7 +374,7 @@ public class Gestion {
             } while (choix != 3);
 
         } catch (SQLException e) {
-            System.out.println("erreur " + e.getMessage());
+            System.out.println("Erreur (update local) : " + e.getMessage());
         }
 
     }
@@ -347,7 +384,7 @@ public class Gestion {
         try {
             localDAO.delete(localActuel);
         } catch (SQLException e) {
-            System.out.println("erreur " + e.getMessage());
+            System.out.println("Erreur (suppression local) : " + e.getMessage());
         }
         GestionLocal(); // mettre le gestion dans un if, afin qu'il renvoie au menu si il y a eu suppression.
 
@@ -366,7 +403,7 @@ public class Gestion {
                 System.out.println(lcl);
             }
         } catch (SQLException e) {
-            System.out.println("erreur " + e.getMessage());
+            System.out.println("Erreur (recherche description local) : " + e.getMessage());
         }
 
     }
@@ -387,7 +424,7 @@ public class Gestion {
             System.out.println("Cours actuel : " + coursActuel);
 
         } catch (SQLException e) {
-            System.out.println("Erreur : " + e);
+            System.out.println("Erreur (création cours): " + e);
         }
 
     }
@@ -423,7 +460,7 @@ public class Gestion {
                     break;
 
                 default:
-                    System.out.println("Erreur");
+                    System.out.println("Erreur.");
             }
         } while (choix != 3);
 
@@ -457,12 +494,12 @@ public class Gestion {
                     case 2:
                         break;// retour au menu précédent
                     default:
-                        System.out.println("Erreur");
+                        System.out.println("Erreur (update cours).");
                 }
             } while (choix != 2);
 
         } catch (SQLException e) {
-            System.out.println("erreur " + e.getMessage());
+            System.out.println("Erreur (update cours)" + e.getMessage());
         }
 
     }
@@ -471,7 +508,7 @@ public class Gestion {
         try {
             coursDAO.delete(coursActuel);
         } catch (SQLException e) {
-            System.out.println("erreur " + e.getMessage());
+            System.out.println("Erreur (suppression cours) " + e.getMessage());
         }
         GestionCours(); // mettre le gestion dans un if, afin qu'il renvoie au menu si il y a eu suppression.
     }
@@ -507,10 +544,10 @@ public class Gestion {
 
         try {
             formateurActuel = formateurDAO.create(formateurActuel);
-            System.out.println("Cours actuel : " + formateurActuel);
+            System.out.println("Formateur actuel : " + formateurActuel);
 
         } catch (SQLException e) {
-            System.out.println("Erreur : " + e);
+            System.out.println("Erreur (création formateur): " + e);
         }
 
     }
@@ -541,10 +578,11 @@ public class Gestion {
                 case 2:
                     deleteFormateur();
                     GestionFormateur();
-                case 3:break;
+                case 3:
+                    break;
 
                 default:
-                    System.out.println("Erreur");
+                    System.out.println("Erreur (recherche formateur).");
             }
         } while (choix != 3);
 
@@ -614,12 +652,12 @@ public class Gestion {
                         break;// retour au menu précédent
 
                     default:
-                        System.out.println("Erreur");
+                        System.out.println("Erreur(update formateur).");
                 }
             } while (choix != 4);
 
         } catch (SQLException e) {
-            System.out.println("erreur " + e.getMessage());
+            System.out.println("Erreur (update formateur) : " + e.getMessage());
         }
 
     }
@@ -628,16 +666,15 @@ public class Gestion {
         try {
             formateurDAO.delete(formateurActuel);
         } catch (SQLException e) {
-            System.out.println("erreur " + e.getMessage());
+            System.out.println("Erreur (suppression formateur) " + e.getMessage());
         }
         GestionFormateur(); // mettre le gestion dans un if, afin qu'il renvoie au menu si il y a eu suppression.
 
     }
 
 //================================= PARTIE SESSION  =================================
-    public void SessionProf() {
+    public void SessionForm() {
 
-        // Connection dbConnect = DBConnection.getConnection();
         Vue_FormateurDAO vueForm = new Vue_FormateurDAO();
         System.out.println("\n Afficher la/les session(s) d'un formateur");
         System.out.println("\n Entrer l'identifiant du formateur : ");
@@ -646,13 +683,12 @@ public class Gestion {
         try {
             System.out.println(vueForm.SessionFormateur(idform));
         } catch (SQLException e) {
-            System.out.println("Erreur: " + e);
+            System.out.println("Erreur (Session formateur) : " + e);
         }
 
     }
 
     public void SessionHeures() {
-// Connection dbConnect = DBConnection.getConnection();
 
         Vue_SessionHeuresDAO vueHeures = new Vue_SessionHeuresDAO();
         System.out.println("\n Afficher le nbr d'heures total d'une session :");
@@ -662,14 +698,14 @@ public class Gestion {
         try {
             System.out.println(vueHeures.SessionHeures(idsesscours));
         } catch (SQLException e) {
-            System.out.println("Erreur: " + e);
+            System.out.println("Erreur (Session heures) : " + e);
         }
 
     }
 //================================= PARTIE MAIN  =================================
 
     public static void main(String[] args) throws SQLException {
-        Gestion g = new Gestion(); //nom du fichier de gestion
+        Gestion g = new Gestion(); //nom de la classe de gestion
 
         // appelle de la fonction afin de lancer le menu de départ.
         g.GestionPrincipal();

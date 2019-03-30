@@ -3,6 +3,8 @@ package projet.metier;
 
 public class Local {
     
+    /*Classe métier correspondant à la table local dans la BDD */
+    
     protected int idlocal;
     protected String sigle;
     protected String places;

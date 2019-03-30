@@ -1,9 +1,11 @@
 package projet.metier;
 
 public class Vue_SessionHeures {
-
+/**
+     * Classe métier correspondant à la vue "SESSIONS_HEURE" dans la BDD.
+     */
     protected int idsesscours;
-    protected int totalHeures;
+    protected int totalHeures; // de la session
 
     public Vue_SessionHeures() {
     }
