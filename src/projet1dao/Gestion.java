@@ -9,10 +9,15 @@ import java.util.*;
 import projet.DAO.LocalDAO;
 import projet.DAO.CoursDAO;
 import projet.DAO.FormateurDAO;
+import projet.DAO.Vue_FormateurDAO;
+import projet.DAO.Vue_SessionHeuresDAO;
 import projet.DAO.DAO;
-import projet.description.Local;
-import projet.description.Cours;
-import projet.description.Formateur;
+
+import projet.metier.Local;
+import projet.metier.Cours;
+import projet.metier.Formateur;
+import projet.metier.Vue_Formateur;
+import projet.metier.Vue_SessionHeures;
 
 import myconnections.DBConnection;
 
@@ -23,16 +28,23 @@ public class Gestion {
     Cours coursActuel = null;
     Formateur formateurActuel = null;
     Local localActuel = null;
+    Vue_Formateur Vue_FormateurActuel = null;
+    Vue_SessionHeures Vue_SessionHeuresActuel = null;
 
+    // Permet de me donner l'accès au(x) méthode(s) ajoutée(s) dans les classes métiers
     private CoursDAO coursDAO;
     private FormateurDAO formateurDAO;
     private LocalDAO localDAO;
+    private Vue_FormateurDAO Vue_FormateurDAO;
+    private Vue_SessionHeuresDAO Vue_SessionHeuresDAO;
 
     public Gestion() {
     }
+//================================= PARTIE GESTION  =================================
 
     public void GestionPrincipal() throws SQLException {
         Connection dbConnect = DBConnection.getConnection();
+
         if (dbConnect == null) {
             System.out.println("Erreur de connexion, invalide");
             System.exit(0);
@@ -41,11 +53,12 @@ public class Gestion {
 
         int choix = 0;
         do {
-            System.out.println("Menu Principal du Programme : "
+            System.out.println("***======== Menu Principal du Programme : ========*** "
                     + "\n 1- Cours."
                     + "\n 2- Formateur."
                     + "\n 3- Local."
-                    + "\n 4- Sortie du programme.");
+                    + "\n 4- Informations Session"
+                    + "\n 5- Sortie du programme.");
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
             sc.skip("\n");
@@ -60,6 +73,10 @@ public class Gestion {
                     GestionLocal();
                     break;
                 case 4:
+                    GestionSession();
+
+                    break;
+                case 5:
                     System.out.println("End");
                     break;
 
@@ -67,7 +84,7 @@ public class Gestion {
                     System.out.println("Erreur");
                     break;
             }
-        } while (choix != 4);
+        } while (choix != 5);
         DBConnection.closeConnection();
     }
 
@@ -103,7 +120,7 @@ public class Gestion {
                     break;
             }
         } while (choix != 3);
-        DBConnection.closeConnection();
+
     }
 
     public void GestionFormateur() throws SQLException {
@@ -157,14 +174,14 @@ public class Gestion {
              * le nombre de places disponibles et la description.
              *
              * La recherche grâce à la description (requête avec un like) dans
-             * la colonne description de ma BDD. Elle permet juste l'affichage
-             * des locaux dans une ArrayList.
+             * la colonne description de ma BDD. Elle permet l'affichage du/des
+             * local/locaux recherché(s), dans une ArrayList.
              */
             System.out.println("Menu de Gestion des locaux : "
                     + "\n 1- Création d'un local."
                     + "\n 2- Recherche local (sigle)."
                     + "\n 3- Recherche local (description)."
-                    + "\n 4- Retour sur le menu principal.");
+                    + "\n 4- Retour au menu principal.");
 
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
@@ -182,7 +199,6 @@ public class Gestion {
                     break;
 
                 case 4:
-                    System.out.println("Retour au menu principal ! ");
                     break;
 
                 default:
@@ -190,6 +206,41 @@ public class Gestion {
                     break;
             }
         } while (choix != 4);
+
+    }
+
+    public void GestionSession() throws SQLException {
+
+        Connection dbConnect = DBConnection.getConnection();
+        Vue_FormateurDAO = new Vue_FormateurDAO();
+        Vue_FormateurDAO.setConnection(dbConnect);
+
+        /*Vue_SessionHeuresDAO = new Vue_SessionHeuresDAO();
+        Vue_SessionHeuresDAO.setConnection(dbConnect);*/
+        
+       int choix = 0;
+        do {
+            System.out.println("Menu de Gestion des Sessions :"
+                    + "\n 1- Afficher les sessions d'un formateur (ID)."
+                    + "\n 2- Afficher le total d'heures par session."
+                    + "\n 3- Retour au menu principal");
+            System.out.println("\n Entrer votre choix : ");
+            choix = sc.nextInt();
+            sc.skip("\n");
+            
+            switch (choix) {
+                case 1: SessionProf();
+                    break;
+                case 2:SessionHeures();
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.out.println("Erreur");
+                    break;
+            }
+
+        } while (choix != 3);
 
     }
 
@@ -217,7 +268,7 @@ public class Gestion {
 
     public void rechercheSigleLocal() throws SQLException {
 
-        System.out.println("Sigle recherché :");
+        System.out.println("Sigle (exact) recherché :");
         String sig = sc.nextLine();
         localActuel = localDAO.readSigle(sig);
         System.out.println("Local recherché : " + localActuel);
@@ -225,9 +276,9 @@ public class Gestion {
         do {
 
             System.out.println(" Que souhaitez-vous faire ? : "
-                    + "\n\n1.Modification des infos du local :"
-                    + "\n2.Supprimer le local :"
-                    + "\n3.Retour ");
+                    + "\n 1- Modification des infos du local :"
+                    + "\n 2- Supprimer le local :"
+                    + "\n 3- Retour ");
 
             System.out.println("\nEntrer votre choix : ");
             choix1 = sc.nextInt();
@@ -242,7 +293,6 @@ public class Gestion {
                     deleteLocal();
                     GestionLocal();
                 case 3:
-                    System.out.println("Retour au menu précédent ! ");
                     break;
 
                 default:
@@ -272,8 +322,8 @@ public class Gestion {
                         System.out.println("Entrez le nombre de place disponible : ");
                         String places = sc.nextLine();
                         localActuel.setPlaces(places);
-                        
-                       //Appel de la méthode update afin d'opérer les changements dans la bdd
+
+                        //Appel de la méthode update afin d'opérer les changements dans la bdd
                         localDAO.update(localActuel);
                         break;
 
@@ -281,7 +331,7 @@ public class Gestion {
                         System.out.println("Entrez la nouvelle description du local: ");
                         String description = sc.nextLine();
                         localActuel.setDescription(description);
-                        
+
                         //Appel de la méthode update afin d'opérer les changements dans la bdd
                         localDAO.update(localActuel);
                         break;
@@ -404,7 +454,7 @@ public class Gestion {
                         int heures = sc.nextInt();
                         sc.skip("\n");
                         coursActuel.setHeures(heures);
-                        
+
                         //Appel de la méthode update afin d'opérer les changements dans la bdd
                         coursDAO.update(coursActuel);
                         break;
@@ -439,7 +489,7 @@ public class Gestion {
         System.out.println("Nom du formateur : ");
         String nom = sc.nextLine();
 
-        System.out.println("Prenom du formateur : ");
+        System.out.println("Prénom du formateur : ");
         String prenom = sc.nextLine();
 
         System.out.println("Numero (adresse) : ");
@@ -451,10 +501,10 @@ public class Gestion {
         System.out.println("Localite : ");
         String localite = sc.nextLine();
 
-        System.out.println("Code postale : ");
+        System.out.println("Code postal : ");
         int cp = sc.nextInt();
         sc.skip("\n");
-        
+
         System.out.println("Numero de téléphone: ");
         String tel = sc.nextLine();
 
@@ -527,47 +577,43 @@ public class Gestion {
                         System.out.println("Entrez le nouveau nom : ");
                         String nom = sc.nextLine();
                         formateurActuel.setNom(nom);
-                        
-                        
+
                         System.out.println("Entrez le nouveau prenom : ");
                         String prenom = sc.nextLine();
                         formateurActuel.setPrenom(prenom);
-                        
+
                         //Appel de la méthode update afin d'opérer les changements dans la bdd
                         formateurDAO.update(formateurActuel);
-                        
+
                         break;
 
                     case 2:
                         System.out.println("Entrez le nouveau numero : ");
-                        String numero  = sc.nextLine();
+                        String numero = sc.nextLine();
                         formateurActuel.setNumero(numero);
-                        
-                        
+
                         System.out.println("Entrez la nouvelle rue : ");
                         String rue = sc.nextLine();
                         formateurActuel.setRue(rue);
-                        
-                        
+
                         System.out.println("Entrez la nouvelle localite : ");
                         String localite = sc.nextLine();
                         formateurActuel.setLocalite(localite);
-                        
-                        
+
                         System.out.println("Entrez le nouveau code postal : ");
                         int cp = sc.nextInt();
                         sc.skip("\n");
                         formateurActuel.setCp(cp);
-                        
+
                         //Appel de la méthode update afin d'opérer les changements dans la bdd
                         formateurDAO.update(formateurActuel);
                         break;
-                        
+
                     case 3:
                         System.out.println("Entrez le nouveau numéro de téléphone : ");
                         String tel = sc.nextLine();
                         formateurActuel.setTelephone(tel);
-                        
+
                         //Appel de la méthode update afin d'opérer les changements dans la bdd
                         formateurDAO.update(formateurActuel);
                         break;
@@ -594,13 +640,35 @@ public class Gestion {
         GestionFormateur(); // mettre le gestion dans un if, afin qu'il renvoie au menu si il y a eu suppression.
 
     }
+
+//================================= PARTIE SESSION  =================================
+    public void SessionProf() {
+        
+        Vue_FormateurDAO vueForm = new Vue_FormateurDAO();
+        System.out.println("\n Afficher la/les session(s) d'un formateur");
+        System.out.println("\n Entrer l'identifiant du formateur : ");
+        int idform = sc.nextInt();
+        sc.skip("\n");
+try{
+            System.out.println(vueForm.SessionFormateur(idform));
+        } catch (SQLException e) {
+            System.out.println("Erreur: "+e);
+        }
+        
+    }
+
+    public void SessionHeures() {
+
+    }
 //================================= PARTIE MAIN  =================================
 
     public static void main(String[] args) throws SQLException {
 
-        LocalDAO ld = new LocalDAO(); // permet d'appeler la méthode readSigle dans LocalDAO afin de ne pas faire une surcharge des méthodes CRUD.
+       LocalDAO ld = new LocalDAO(); // permet d'appeler la méthode readSigle dans LocalDAO afin de ne pas faire une surcharge des méthodes CRUD.
         FormateurDAO fd = new FormateurDAO();
         CoursDAO cd = new CoursDAO();
+        Vue_FormateurDAO vfd = new Vue_FormateurDAO();
+        Vue_SessionHeuresDAO shd = new Vue_SessionHeuresDAO();
 
         Gestion g = new Gestion(); //nom du fichier de gestion
 

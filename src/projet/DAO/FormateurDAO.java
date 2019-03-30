@@ -3,10 +3,18 @@ package projet.DAO;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
-import projet.description.Formateur;
+import projet.metier.Formateur;
 
 public class FormateurDAO extends DAO<Formateur> {
 
+    /**
+     * création d'un local sur base des valeurs de son objet métier
+     * (projet.metier)
+     *
+     * @throws SQLException erreur de création
+     * @param obj local à créer
+     * @return local créé
+     */
     @Override
     public Formateur create(Formateur obj) throws SQLException {
         String req1 = "insert into pro_formateur(matricule,nom,prenom,numero,rue,localite,cp,tel) values(?,?,?,?,?,?,?,?)";
@@ -49,6 +57,15 @@ public class FormateurDAO extends DAO<Formateur> {
             }
         }
     }
+    
+    /**
+     * récupération des données d'un local sur base de son identifiant
+     * local@throws SQLException local inconnu
+     *
+     * @param sigle
+     * @return local trouvé
+     * @throws java.sql.SQLException
+     */
 
     @Override
     public Formateur read(int idform) throws SQLException {
@@ -105,6 +122,13 @@ public class FormateurDAO extends DAO<Formateur> {
         }
     }
 
+    /**
+     * mise à jour des données d'un local sur base de son identifiant
+     *
+     * @return Local
+     * @param obj Local à mettre à jour
+     * @throws SQLException erreur de mise à jour
+     */
     @Override
     public Formateur update(Formateur obj) throws SQLException {
         String req = "update pro_formateur set nom=?,prenom=?,"
@@ -130,6 +154,12 @@ public class FormateurDAO extends DAO<Formateur> {
         return obj;
     }
 
+    /**
+     * effacement d'un local sur base de son identifiant
+     *
+     * @throws SQLException erreur d'effacement
+     * @param obj local à effacer
+     */
     @Override
     public void delete(Formateur obj) throws SQLException {
         String req = "delete from pro_formateur where nom= ?";

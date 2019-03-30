@@ -1,5 +1,5 @@
 
-package projet.description;
+package projet.metier;
 
 public class Local {
     

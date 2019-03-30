@@ -2,7 +2,7 @@ package projet.DAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import projet.description.Local;
+import projet.metier.Local;
 
 public abstract class DAO<T> {
 

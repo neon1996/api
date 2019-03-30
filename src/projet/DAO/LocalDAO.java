@@ -3,13 +3,13 @@ package projet.DAO;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
-import projet.description.Local;
+import projet.metier.Local;
 
 public class LocalDAO extends DAO<Local> {
 
     /**
      * création d'un local sur base des valeurs de son objet métier
-     * (projet.description)
+     * (projet.metier)
      *
      * @throws SQLException erreur de création
      * @param obj local à créer
@@ -49,8 +49,8 @@ public class LocalDAO extends DAO<Local> {
     }
 
     /**
-     * récupération des données d'un local sur base de son identifiant
-     * local@throws SQLException local inconnu
+     * récupération des données d'un local sur base de son sigle. local@throws
+     * SQLException local inconnu
      *
      * @param sigle
      * @return local trouvé
@@ -81,7 +81,14 @@ public class LocalDAO extends DAO<Local> {
 
     }
 
-    /* SURCHARGE */
+    /**
+     * récupération des données d'un local sur base de son identifiant
+     * local@throws SQLException local inconnu
+     *
+     * @param idlocal
+     * @return local trouvé
+     * @throws java.sql.SQLException
+     */
     @Override
     public Local read(int idlocal) throws SQLException {
 
@@ -135,7 +142,7 @@ public class LocalDAO extends DAO<Local> {
     }
 
     /**
-     * effacement d'un local sur base de son identifiant
+     * effacement d'un local sur base de son sigle
      *
      * @throws SQLException erreur d'effacement
      * @param obj local à effacer
@@ -155,6 +162,14 @@ public class LocalDAO extends DAO<Local> {
         }
     }
 
+    /**
+     * méthode permettant de récupérer tous les locaux ayant une certaine
+     * description
+     *
+     * @param descriptionrech = description recherchée
+     * @return liste de locaux
+     * @throws SQLException local inconnu
+     */
     public List<Local> rechDescription(String descriptionrech) throws SQLException {
 
         List<Local> searchdesc = new ArrayList<>();
@@ -177,14 +192,13 @@ public class LocalDAO extends DAO<Local> {
                     searchdesc.add(new Local(idlocal, sigle, places, description));
                 }
 
-                if (!trouve) {
-                    throw new SQLException("Local inconnu");
-                } else {
-                    return searchdesc;
-                }
+            } catch (SQLException e) {
+                System.out.println("Erreur affichage (recherche local - description) : " + e);
             }
+        } catch (SQLException e) {
+            System.out.println("Erreur requete local (recherche local - description)" + e);
+
         }
-
+        return searchdesc;
     }
-
 }

@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projet.DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import projet.description.Cours;
+import projet.metier.Cours;
 
-/**
- *
- * @author Florence
- */
 public class CoursDAO extends DAO<Cours> {
 
+    /**
+     * création d'un local sur base des valeurs de son objet métier
+     * (projet.metier)
+     *
+     * @throws SQLException erreur de création
+     * @param obj local à créer
+     * @return local créé
+     */
     @Override
     public Cours create(Cours obj) throws SQLException {
         String req1 = "insert into pro_cours(matiere,heures) values(?,?)";
@@ -46,6 +45,15 @@ public class CoursDAO extends DAO<Cours> {
             }
         }
     }
+    
+    /**
+     * récupération des données d'un local sur base de son identifiant
+     * local@throws SQLException local inconnu
+     *
+     * @param sigle
+     * @return local trouvé
+     * @throws java.sql.SQLException
+     */
 
     @Override
     public Cours read(int idcours) throws SQLException {
@@ -92,6 +100,13 @@ public class CoursDAO extends DAO<Cours> {
         }
     }
 
+    /**
+     * mise à jour des données d'un local sur base de son identifiant
+     *
+     * @return Local
+     * @param obj Local à mettre à jour
+     * @throws SQLException erreur de mise à jour
+     */
     @Override
     public Cours update(Cours obj) throws SQLException {
 
@@ -113,6 +128,12 @@ public class CoursDAO extends DAO<Cours> {
 
     }
 
+    /**
+     * effacement d'un local sur base de son identifiant
+     *
+     * @throws SQLException erreur d'effacement
+     * @param obj local à effacer
+     */
     @Override
     public void delete(Cours obj) throws SQLException {
         String req = "delete from pro_cours where matiere= ?";
