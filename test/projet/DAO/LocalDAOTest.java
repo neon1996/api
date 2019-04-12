@@ -47,22 +47,22 @@ public class LocalDAOTest {
     @Test
     public void testCreate() throws Exception {
         System.out.println("create");
-        Local obj = new Local(0, "TestSigle", "5", "TestDescription");
+        Local obj = new Local(0, "TestSigle", 5, "TestDescription");
         LocalDAO instance = new LocalDAO();
         
         instance.setConnection(dbConnect);
         
-        Local expResult = new Local(0, "TestSigle", "5", "TestDescription");;
+        Local expResult = new Local(0, "TestSigle", 5, "TestDescription");;
         Local result = instance.create(obj);
         
-        assertEquals("Sigle différents", expResult.getSigle(), result.getSigle());
+        assertEquals("Sigles différents", expResult.getSigle(), result.getSigle());
         assertEquals("Places différents", expResult.getPlaces(), result.getPlaces());
-        assertEquals("Description différents", expResult.getDescription(), result.getDescription());
+        assertEquals("Descriptions différentes", expResult.getDescription(), result.getDescription());
 
-        assertNotEquals("id non généré", expResult.getIdlocal(), result.getIdlocal());
+        assertNotEquals("Identifiant non généré", expResult.getIdlocal(), result.getIdlocal());
         int idlocal = result.getIdlocal();
 
-        obj = new Local(0, "TestSigle", "5", "TestDescription");
+        obj = new Local(0, "TestSigle", 5, "TestDescription");
 
         try {
             obj = instance.create(obj);
@@ -83,7 +83,7 @@ public class LocalDAOTest {
         String sigle = "";
         LocalDAO instance = new LocalDAO();
         instance.setConnection(dbConnect);
-        Local obj = new Local(0, "TestSigle", "10", "TestDescription");
+        Local obj = new Local(0, "TestSigle", 10, "TestDescription");
         Local expResult = instance.create(obj);
         sigle = expResult.getSigle();
         Local result = instance.readSigle(sigle);
@@ -92,7 +92,7 @@ public class LocalDAOTest {
 
         try {
             result = instance.read(0);
-            fail("Exception d'un code inconnu non genere");
+            fail("Exception d'un code inconnu non géneré");
         } catch (SQLException e) {
         }
         instance.delete(result);
@@ -108,7 +108,7 @@ public class LocalDAOTest {
         int idlocal = 0;
         LocalDAO instance = new LocalDAO();
         instance.setConnection(dbConnect);
-        Local obj = new Local(0, "TestSigle", "10", "TestDescription");
+        Local obj = new Local(0, "TestSigle", 10, "TestDescription");
         Local expResult = instance.create(obj);
         idlocal = expResult.getIdlocal();
         Local result = instance.read(idlocal);
@@ -131,7 +131,7 @@ public class LocalDAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        Local obj = new Local(0, "TestSigle", "10", "TestDescription");
+        Local obj = new Local(0, "TestSigle", 10, "TestDescription");
         LocalDAO instance = new LocalDAO();
         instance.setConnection(dbConnect);
         obj = instance.create(obj);
@@ -150,7 +150,7 @@ public class LocalDAOTest {
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
-        Local obj = new Local(0, "TestSigle", "10", "TestDescription");
+        Local obj = new Local(0, "TestSigle",10, "TestDescription");
         LocalDAO instance = new LocalDAO();
         instance.setConnection(dbConnect);
         obj = instance.create(obj);
@@ -170,8 +170,8 @@ public class LocalDAOTest {
 
     public void testRechDescription() throws Exception {
         System.out.println("rechDescription");
-        Local obj1 = new Local(0, "TestSig", "10", "testdescription");
-        Local obj2 = new Local(0, "TestSig2", "20", "testdescription");
+        Local obj1 = new Local(0, "TestSig", 10, "testdescription");
+        Local obj2 = new Local(0, "TestSig2", 20, "testdescription");
 
         String descriptionrech = "testdescription";
         LocalDAO instance = new LocalDAO();

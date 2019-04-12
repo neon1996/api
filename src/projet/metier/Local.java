@@ -9,14 +9,14 @@ public class Local {
     
     protected int idlocal;
     protected String sigle;
-    protected String places;
+    protected int places;
     protected String description;
     
     public Local(){
         
     }
 
-    public Local(int idlocal, String sigle, String places, String description) {
+    public Local(int idlocal, String sigle, int places, String description) {
         this.idlocal = idlocal;
         this.sigle = sigle;
         this.places = places;
@@ -40,11 +40,11 @@ public class Local {
         this.sigle = sigle;
     }
 
-    public String getPlaces() {
+    public int getPlaces() {
         return places;
     }
 
-    public void setPlaces(String places) {
+    public void setPlaces(int places) {
         this.places = places;
     }
 

@@ -27,7 +27,7 @@ public class LocalDAO extends DAO<Local> {
                 PreparedStatement pstm2 = dbConnect.prepareStatement(req2)) {
 
             pstm1.setString(1, obj.getSigle());
-            pstm1.setString(2, obj.getPlaces());
+            pstm1.setInt(2, obj.getPlaces());
             pstm1.setString(3, obj.getDescription());
 
             int n = pstm1.executeUpdate();
@@ -36,7 +36,7 @@ public class LocalDAO extends DAO<Local> {
             }
 
             pstm2.setString(1, obj.getSigle());
-            pstm2.setString(2, obj.getPlaces());
+            pstm2.setInt(2, obj.getPlaces());
             pstm2.setString(3, obj.getDescription());
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
@@ -70,7 +70,7 @@ public class LocalDAO extends DAO<Local> {
                 if (rs.next()) {
 
                     int idlocal = rs.getInt("IDLOCAL");
-                    String places = rs.getString("PLACES");
+                    int places = rs.getInt("PLACES");
                     String description = rs.getString("DESCRIPTION");
 
                     return new Local(idlocal, sigle, places, description);
@@ -104,7 +104,7 @@ public class LocalDAO extends DAO<Local> {
                 if (rs.next()) {
 
                     String sigle = rs.getString("SIGLE");
-                    String places = rs.getString("PLACES");
+                    int places = rs.getInt("PLACES");
                     String description = rs.getString("DESCRIPTION");
 
                     return new Local(idlocal, sigle, places, description);
@@ -132,7 +132,7 @@ public class LocalDAO extends DAO<Local> {
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
             pstm.setString(3, obj.getSigle());
-            pstm.setString(1, obj.getPlaces());
+            pstm.setInt(1, obj.getPlaces());
             pstm.setString(2, obj.getDescription());
 
             int n = pstm.executeUpdate();
@@ -189,7 +189,7 @@ public class LocalDAO extends DAO<Local> {
 
                     int idlocal = rs.getInt("IDLOCAL");
                     String sigle = rs.getString("SIGLE");
-                    String places = rs.getString("PLACES");
+                    int places = rs.getInt("PLACES");
                     String description = rs.getString("DESCRIPTION");
 
                     searchdesc.add(new Local(idlocal, sigle, places, description));
