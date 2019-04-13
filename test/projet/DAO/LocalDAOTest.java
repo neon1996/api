@@ -76,11 +76,13 @@ public class LocalDAOTest {
 
     /**
      * Test of readSigle method, of class LocalDAO.
+     * @throws java.lang.Exception
      */
     @Test
     public void testReadSigle() throws Exception {
         System.out.println("readSigle");
         String sigle = "";
+        
         LocalDAO instance = new LocalDAO();
         instance.setConnection(dbConnect);
         Local obj = new Local(0, "TestSigle", 10, "TestDescription");

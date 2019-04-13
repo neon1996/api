@@ -15,11 +15,11 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
     public Sessioncours create(Sessioncours obj) throws SQLException {
 
         String req1 = "insert into pro_sessioncours(datedebut,datefin,nbreinscrits,idlocal,idcours) values(?,?,?,?,?)";
-        String req2 = "select idsesscours from pro_sessioncours where datedebut=? and datefin=? and idcours=? ";
+        String req2 = "select idsesscours from pro_sessioncours where datedebut=? and datefin=? and nbreinscrits=? and idlocal=? and idcours=? ";
 
         try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1);
                 PreparedStatement pstm2 = dbConnect.prepareStatement(req2)) {
-
+ 
             pstm1.setDate(1, java.sql.Date.valueOf(obj.getDateDebut()));
             pstm1.setDate(2, java.sql.Date.valueOf(obj.getDateFin()));
             pstm1.setInt(3, obj.getNbreinscrits());
@@ -31,11 +31,11 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
                 throw new SQLException("erreur de creation (session cours), aucune ligne n'a été créée");
             }
 
-            pstm2.setDate(1, java.sql.Date.valueOf(obj.getDateDebut()));
+           pstm2.setDate(1, java.sql.Date.valueOf(obj.getDateDebut()));
             pstm2.setDate(2, java.sql.Date.valueOf(obj.getDateFin()));
             pstm2.setInt(3, obj.getNbreinscrits());
-           // pstm2.setInt(4, obj.getIdlocal());
-            pstm2.setInt(4, obj.getIdcours());
+            pstm2.setInt(4, obj.getIdlocal());
+            pstm2.setInt(5, obj.getIdcours());
 
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
@@ -51,7 +51,7 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
 
     @Override
     public Sessioncours read(int idsesscours) throws SQLException {
-        String req = "select * from pro_sesscours where idsesscours = ?";
+        String req = "select * from pro_sessioncours where idsesscours = ?";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
@@ -77,7 +77,7 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
 
     @Override
     public Sessioncours update(Sessioncours obj) throws SQLException {
-        String req = "update pro_sesscours set datedebut=?,datefin=?,nbreinscrits=?,idlocal=?,idcours=?"
+        String req = "update pro_sessioncours set datedebut=?,datefin=?,nbreinscrits=?,idlocal=?,idcours=?"
                 + "where idsesscours=?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
@@ -102,7 +102,7 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
 
     @Override
     public void delete(Sessioncours obj) throws SQLException {
-        String req = "delete from pro_sesscours where idsesscours= ?";
+        String req = "delete from pro_sessioncours where idsesscours= ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
             pstm.setInt(1, obj.getIdsesscours());

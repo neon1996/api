@@ -38,6 +38,8 @@ public class LocalDAO extends DAO<Local> {
             pstm2.setString(1, obj.getSigle());
             pstm2.setInt(2, obj.getPlaces());
             pstm2.setString(3, obj.getDescription());
+            
+            
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
                     int idlocal = rs.getInt(1);

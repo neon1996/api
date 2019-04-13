@@ -113,23 +113,37 @@ public class CoursDAOTest {
 
     /**
      * Test of readMatiere method, of class CoursDAO.
+     * @throws java.lang.Exception
      */
-    /*  @Test
+    @Test
     public void testReadMatiere() throws Exception {
         System.out.println("readMatiere");
+    
         String matiere = "";
         CoursDAO instance = new CoursDAO();
-        Cours expResult = null;
+        instance.setConnection(dbConnect);
+        
+        Cours obj = new Cours(0,"TestMatiere", 10);
+        Cours expResult = instance.create(obj);
+        
+        matiere = expResult.getMatiere();
         Cours result = instance.readMatiere(matiere);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        assertEquals("Matières differentes", expResult.getMatiere(), result.getMatiere());
+
+        try {
+            result = instance.read(0);
+            fail("Exception d'un code inconnu non géneré");
+        } catch (SQLException e) {}
+        instance.delete(result);
     }
-     */
+     
     /**
      * Test of update method, of class CoursDAO.
      * @throws java.lang.Exception
+     
      */
+    
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");

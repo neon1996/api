@@ -1,8 +1,9 @@
 package projet.menu;
 
 import java.sql.Connection;
-import .java.sql.SQLException;
+
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -16,6 +17,8 @@ import java.util.Calendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import projet.DAO.InfosDAO;
+import projet.metier.Infos;
 
 /**
  *
@@ -27,12 +30,18 @@ public class SessioncoursMenu {
 
     Sessioncours sessioncoursActuel = null;
     private SessioncoursDAO sessioncoursDAO;
+    
+   
+    private InfosDAO infosDAO;
 
-    public void GestionSessionCours() {
+    public void GestionSessionCours() throws SQLException {
 
         Connection dbConnect = DBConnection.getConnection();
         sessioncoursDAO = new SessioncoursDAO();
         sessioncoursDAO.setConnection(dbConnect);
+        
+        infosDAO = new InfosDAO();
+        infosDAO.setConnection(dbConnect);
 
         int choix = 0;
 
@@ -64,65 +73,89 @@ public class SessioncoursMenu {
     }
 
     public void creationSession() {
-        
-        /////////////////////Date Debut
 
+        /////////////////////Date Debut
         System.out.println("Entrer la date de debut de la session : \n");
-        System.out.println("Entrer le jour : ");
-        int jour = sc.nextInt();
+        System.out.println("Entrer l'année : ");
+        int annee = sc.nextInt();
         sc.skip("\n");
-        System.out.println("Entrer le jour : ");
+        System.out.println("Entrer le Mois : ");
         int mois = sc.nextInt();
         sc.skip("\n");
         System.out.println("Entrer le jour : ");
-        int annee = sc.nextInt();
+        int jour = sc.nextInt();
         sc.skip("\n");
-       
-        LocalDate unJour = LocalDate.of(jour, mois, annee);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("JJ/MM/AAAA", Locale.FRENCH);
-        String aff = unJour.format(dtf);
-        
-        
+
+        LocalDate dateDebut = LocalDate.of(annee, mois, jour);
+        System.out.println(dateDebut);
+        /* DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.FRENCH);
+        String aff = unJour.format(dtf);*/
+
         ////////////////////Date fin
-       
         System.out.println("Entrer la date de fin de la session : \n");
-        System.out.println("Entrer le jour : ");
-        int jour1 = sc.nextInt();
+
+        System.out.println("Entrer l'année : ");
+        int annee1 = sc.nextInt();
         sc.skip("\n");
-        System.out.println("Entrer le jour : ");
+        System.out.println("Entrer le Mois : ");
         int mois1 = sc.nextInt();
         sc.skip("\n");
         System.out.println("Entrer le jour : ");
-        int annee1 = sc.nextInt();
+        int jour1 = sc.nextInt();
         sc.skip("\n");
 
-      
-        LocalDate unJour1 = LocalDate.of(jour1, mois1, annee1);
-        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("JJ/MM/AAAA", Locale.FRENCH);
-        String aff1 = unJour1.format(dtf1);
-       
-        System.out.println(" Nombre d'étudiants inscrits : ");
+        LocalDate dateFin = LocalDate.of(annee1, mois1, jour1);
+
+        System.out.println(dateFin);
+
+        /* DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("JJ/MM/AAAA", Locale.FRENCH);
+        String aff1 = unJour1.format(dtf1);*/
+        System.out.println("Nombre d'étudiants inscrits : ");
         int nbreinscrits = sc.nextInt();
         sc.skip("\n");
 
-        System.out.println(" Identifiant du local : ");
+        System.out.println("Identifiant du local : ");
         int idlocal = sc.nextInt();
         sc.skip("\n");
 
-        System.out.println(" Identifiant du cours : ");
+        System.out.println("Identifiant du cours : ");
         int idcours = sc.nextInt();
         sc.skip("\n");
 
-        sessioncoursActuel = new Sessioncours(0, aff, aff1, nbreinscrits, idlocal, idcours);
+        sessioncoursActuel = new Sessioncours(0, dateDebut, dateFin, nbreinscrits, idlocal, idcours);
 
+              
         try {
 
             sessioncoursActuel = sessioncoursDAO.create(sessioncoursActuel);
             System.out.println("Session cours actuelle : " + sessioncoursActuel);
 
         } catch (SQLException e) {
-            System.out.println("Erreur (création session cours) : " + e);
-        }  
+            System.out.println("Erreur (création session cours) : identifiant local ou cours non valide!  : " + e);
+        }
+        
+        System.out.println("Entrer l'id formateur  responsable de la session de cours :");
+        int idform = sc.nextInt();
+        sc.skip("\n");
+        
+        System.out.println("Entrer le nombre d'heures de cours données par le formateur : ");
+        int nbrheure = sc.nextInt();
+        sc.skip("\n");
+        
+        Infos infos = new Infos(0,idform,sessioncoursActuel.getIdsesscours(),nbrheure);
+        InfosDAO infod = new InfosDAO();
+        try {
+
+            infos = infod.create(infos);
+            System.out.println("Session cours actuelle : " + infos);
+
+        } catch (SQLException e) {
+            System.out.println("Erreur (création infos) : " + e);
+        }
+        
+        
+        
+        
 
     }
 

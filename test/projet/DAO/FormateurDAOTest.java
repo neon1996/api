@@ -134,19 +134,30 @@ public class FormateurDAOTest {
 
     /**
      * Test of readMatricule method, of class FormateurDAO.
+     * @throws java.lang.Exception
      */
-    /* @Test
+     @Test
     public void testReadMatricule() throws Exception {
         System.out.println("readMatricule");
         String matricule = "";
-        FormateurDAO instance = new FormateurDAO();
-        Formateur expResult = null;
+        
+         FormateurDAO instance = new FormateurDAO();
+        instance.setConnection(dbConnect);
+        Formateur obj = new Formateur(0, "TestMatricule", "TestNom", "TestPrenom", "TestNumero", "TestRue", "TestLocalite", 7000, "TestTel");
+        Formateur expResult = instance.create(obj);
+        matricule = expResult.getMatricule();
         Formateur result = instance.readMatricule(matricule);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        assertEquals("Sigles differents", expResult.getMatricule(), result.getMatricule());
+
+        try {
+            result = instance.read(0);
+            fail("Exception d'un code inconnu non géneré");
+        } catch (SQLException e) {
+        }
+        instance.delete(result);
     }
-     */
+     
     /**
      * Test of update method, of class FormateurDAO.
      * @throws java.lang.Exception
