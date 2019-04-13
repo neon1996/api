@@ -28,7 +28,7 @@ public class CoursMenu {
          *
          *
          */
-        Connection dbConnect = DBConnection.getConnection();
+       Connection dbConnect = DBConnection.getConnection();
         coursDAO = new CoursDAO();
         coursDAO.setConnection(dbConnect);
 

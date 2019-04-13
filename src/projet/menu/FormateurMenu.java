@@ -98,6 +98,7 @@ public class FormateurMenu {
 
         System.out.println("Entrer le matricule du formateur :");
         String matricule = sc.nextLine();
+        
         formateurActuel = formateurDAO.readMatricule(matricule);
         System.out.println("Formateur recherché : " + formateurActuel);
         int choix = 0;

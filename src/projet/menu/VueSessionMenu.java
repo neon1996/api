@@ -27,7 +27,7 @@ public class VueSessionMenu {
     Vue_Formateur Vue_FormateurActuel = null;
     private Vue_FormateurDAO Vue_FormateurDAO;
 
-    public void GestionSession() throws SQLException {
+    public void GestionSessionVue() throws SQLException {
 
         /**
          * Permet l'affichage des vues créées dans la BDD : 1) Afficher toutes

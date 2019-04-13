@@ -52,7 +52,7 @@ public class LocalDAOTest {
         
         instance.setConnection(dbConnect);
         
-        Local expResult = new Local(0, "TestSigle", 5, "TestDescription");;
+        Local expResult = new Local(0, "TestSigle", 5, "TestDescription");
         Local result = instance.create(obj);
         
         assertEquals("Sigles différents", expResult.getSigle(), result.getSigle());
@@ -134,12 +134,17 @@ public class LocalDAOTest {
         Local obj = new Local(0, "TestSigle", 10, "TestDescription");
         LocalDAO instance = new LocalDAO();
         instance.setConnection(dbConnect);
+        
         obj = instance.create(obj);
-        obj.setSigle("TestSigle");
+       // obj.setSigle("TestUpSigle");
+        obj.setPlaces(50);
+        obj.setDescription("TestUpdate");
 
         Local expResult = obj;
         Local result = instance.update(obj);
-        assertEquals(expResult.getSigle(), result.getSigle());
+       // assertEquals(expResult.getSigle(), result.getSigle());
+        assertEquals(expResult.getPlaces(), result.getPlaces());
+        assertEquals(expResult.getDescription(), result.getDescription());
 
         instance.delete(obj);
     }

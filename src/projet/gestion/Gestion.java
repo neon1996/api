@@ -6,23 +6,11 @@ import java.time.format.DateTimeFormatter;
 import java.sql.*;
 import myconnections.*;
 import java.util.*;
-import projet.DAO.LocalDAO;
-import projet.DAO.CoursDAO;
-import projet.DAO.FormateurDAO;
-import projet.DAO.Vue_FormateurDAO;
-import projet.DAO.Vue_SessionHeuresDAO;
-import projet.DAO.DAO;
-
-import projet.metier.Local;
-import projet.metier.Cours;
-import projet.metier.Formateur;
-import projet.metier.Vue_Formateur;
-import projet.metier.Vue_SessionHeures;
-
 import myconnections.DBConnection;
 import projet.menu.CoursMenu;
 import projet.menu.FormateurMenu;
 import projet.menu.LocalMenu;
+import projet.menu.SessioncoursMenu;
 import projet.menu.VueSessionMenu;
 
 public class Gestion {
@@ -33,7 +21,7 @@ public class Gestion {
     }
 //================================= PARTIE GESTION  =================================
 
-    public void GestionPrincipal() throws SQLException {
+    public void GestionPrincipale() throws SQLException {
         /**
          * Démarre le programme et permet d'appeler les méthodes
          */
@@ -51,8 +39,9 @@ public class Gestion {
                     + "\n 1- Cours."
                     + "\n 2- Formateur."
                     + "\n 3- Local."
-                    + "\n 4- Session. (Vue)"
-                    + "\n 5- Sortie du programme.");
+                    + "\n 4- Session de cours"
+                    + "\n 5- Vues des sessions."
+                    + "\n 6- Sortie du programme.");
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
             sc.skip("\n");
@@ -67,10 +56,12 @@ public class Gestion {
                     CallLocal();
                     break;
                 case 4:
-                    CallSession();
-
+                    CallSessionCours();
                     break;
                 case 5:
+                    CallSessionVue();
+                    break;
+                case 6:
                     System.out.println("End");
                     break;
 
@@ -78,7 +69,7 @@ public class Gestion {
                     System.out.println("Erreur");
                     break;
             }
-        } while (choix != 5);
+        } while (choix != 6);
         DBConnection.closeConnection();
     }
 
@@ -102,10 +93,16 @@ public class Gestion {
         LM.GestionLocal();
     }
 
-    public void CallSession() throws SQLException {
+    public void CallSessionCours() throws SQLException {
+
+        SessioncoursMenu SCM = new SessioncoursMenu();
+        SCM.GestionSessionCours();
+    }
+
+    public void CallSessionVue() throws SQLException {
 
         VueSessionMenu VSM = new VueSessionMenu();
-        VSM.GestionSession();
+        VSM.GestionSessionVue();
 
     }
 
@@ -113,8 +110,7 @@ public class Gestion {
     public static void main(String[] args) throws SQLException {
         Gestion g = new Gestion(); //nom de la classe de gestion
 
-        // appelle de la fonction afin de lancer le menu de départ.
-        g.GestionPrincipal();
+        g.GestionPrincipale();// appelle de la fonction afin de lancer le menu de départ.
 
     }
 
