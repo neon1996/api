@@ -148,7 +148,7 @@ public class FormateurDAOTest {
         matricule = expResult.getMatricule();
         Formateur result = instance.readMatricule(matricule);
 
-        assertEquals("Sigles differents", expResult.getMatricule(), result.getMatricule());
+        assertEquals("Matricules differents", expResult.getMatricule(), result.getMatricule());
 
         try {
             result = instance.read(0);

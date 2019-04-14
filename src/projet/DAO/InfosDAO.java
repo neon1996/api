@@ -33,9 +33,9 @@ Connection dbConnect = DBConnection.getConnection();
             
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
-                    int idcours = rs.getInt(1);
-                    obj.setIdform(idcours);
-                    return read(idcours);
+                    int idinfos = rs.getInt(1);
+                    obj.setIdinfos(idinfos);
+                    return read(idinfos);
                 } else {
                     throw new SQLException("Erreur de création dans la table infos, introuvable");
                 }

@@ -16,9 +16,11 @@ import java.util.Calendar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
 import projet.DAO.InfosDAO;
 import projet.metier.Infos;
+import projet.metier.Vue_Formateur;
 
 /**
  *
@@ -48,7 +50,7 @@ public class SessioncoursMenu {
         do {
             System.out.println("Menu de Gestion des Session de Cours : "
                     + "\n 1- Création d'un nouvelle session de cours."
-                    + "\n 2- Recherche d'une session de cours (id de la session)."
+                    + "\n 2- Recherche d'une session de cours d'un formateur (idform)."
                     + "\n 3- Retour au menu principal.");
 
             System.out.println("\n Entrer votre choix : ");
@@ -88,8 +90,8 @@ public class SessioncoursMenu {
 
         LocalDate dateDebut = LocalDate.of(annee, mois, jour);
         System.out.println(dateDebut);
-        /* DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.FRENCH);
-        String aff = unJour.format(dtf);*/
+        
+        
 
         ////////////////////Date fin
         System.out.println("Entrer la date de fin de la session : \n");
@@ -108,8 +110,7 @@ public class SessioncoursMenu {
 
         System.out.println(dateFin);
 
-        /* DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("JJ/MM/AAAA", Locale.FRENCH);
-        String aff1 = unJour1.format(dtf1);*/
+        
         System.out.println("Nombre d'étudiants inscrits : ");
         int nbreinscrits = sc.nextInt();
         sc.skip("\n");
@@ -152,14 +153,25 @@ public class SessioncoursMenu {
         } catch (SQLException e) {
             System.out.println("Erreur (création infos) : " + e);
         }
-        
-        
-        
-        
+      
 
     }
 
     public void rechercheSession() throws SQLException {
+        
+        System.out.println("Session d'un formateur recherché (Entrer son id) : ");
+       
+        int idform = sc.nextInt();sc.skip("\n");
+        try {
+            List<Vue_Formateur> loc = sessioncoursDAO.rechSessionF(idform);
+
+            for (Vue_Formateur sc : loc) { // boucle for afin d'afficher l'ArrayList
+                System.out.println(sc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur (recherche session ) : " + e.getMessage());
+        }
+        
 
     }
 }

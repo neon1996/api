@@ -6,6 +6,7 @@ import java.sql.*;
 import projet.metier.Sessioncours;
 import java.time.LocalDate;
 import myconnections.DBConnection;
+import projet.metier.Vue_Formateur;
 
 public class SessioncoursDAO extends DAO<Sessioncours> {
 
@@ -114,5 +115,34 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
             System.out.println("Aucune ligne effacée : la session de cours n'existe pas dans la BDD !");
         }
     }
+    
+    public List<Vue_Formateur> rechSessionF(int idform) throws SQLException {
+        List<Vue_Formateur> vueF = new ArrayList<>();
+        String req = "select * from sess_formateur where idform= ?";
+        dbConnect = DBConnection.getConnection();
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setInt(1, idform);
+            try (ResultSet rs = pstm.executeQuery()) {
+                boolean trouve = false;
+                while (rs.next()) {
+                    trouve = true;
+                    
+                    String nom = rs.getString("NOM");
+                    String prenom = rs.getString("PRENOM");
+                    String matiere = rs.getString("MATIERE");
+                    int idsesscours = rs.getInt("IDSESSCOURS");
+                    LocalDate datedebut = rs.getDate("DATEDEBUT").toLocalDate();
+                    LocalDate datefin = rs.getDate("DATEFIN").toLocalDate();
 
+                    vueF.add(new Vue_Formateur(idform, nom, prenom, matiere, idsesscours, datedebut, datefin));
+                }
+
+                if (!trouve) {
+                    throw new SQLException("Element inconnu");
+                } else {
+                    return vueF;
+                }
+            }
+        }
+    }
 }

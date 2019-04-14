@@ -115,7 +115,7 @@ public class CoursDAOTest {
      * Test of readMatiere method, of class CoursDAO.
      * @throws java.lang.Exception
      */
-    @Test
+   @Test
     public void testReadMatiere() throws Exception {
         System.out.println("readMatiere");
     
@@ -123,7 +123,7 @@ public class CoursDAOTest {
         CoursDAO instance = new CoursDAO();
         instance.setConnection(dbConnect);
         
-        Cours obj = new Cours(0,"TestMatiere", 10);
+        Cours obj = new Cours(0,"testmatiere", 10);
         Cours expResult = instance.create(obj);
         
         matiere = expResult.getMatiere();
