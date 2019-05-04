@@ -4,6 +4,10 @@ import java.awt.CardLayout;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import projet.DAO.LocalDAO;
+import projet.DAO.CoursDAO;
+import projet.DAO.FormateurDAO;
+
+
 
 import myconnections.DBConnection;
 
@@ -11,9 +15,6 @@ public class Gestion extends javax.swing.JFrame {
 
     CardLayout cardl;
 
-    /**
-     * Creates new form JFrame_Projet
-     */
     public Gestion() {
         initComponents();
 
@@ -26,10 +27,22 @@ public class Gestion extends javax.swing.JFrame {
 
         LocalDAO localDAO = new LocalDAO();
         localDAO.setConnection(dbConnect);
+        
+        CoursDAO coursDAO = new CoursDAO();
+        coursDAO.setConnection(dbConnect);
+        
+        FormateurDAO formateurDAO = new FormateurDAO();
+        formateurDAO.setConnection(dbConnect);
 
         createLocal.setLocalDAO(localDAO);
         rechercheSigleLoc.setLocalDAO(localDAO);
         rechercheDescriptionLocal.setLocalDAO(localDAO);
+        
+        createCours.setCoursDAO(coursDAO);
+        rechercheNomCours.setCoursDAO(coursDAO);
+        
+        createFormateur.setFormateurDAO(formateurDAO);
+        rechercheMatriculeFormateur.setFormateurDAO(formateurDAO);
     }
 
     /**
@@ -42,8 +55,12 @@ public class Gestion extends javax.swing.JFrame {
     private void initComponents() {
 
         rechercheDescriptionLocal = new projet.graph.RechercheDescriptionLocal();
-        rechercheSigleLoc = new projet.graph.RechercheSigleLoc();
+        rechercheSigleLoc = new projet.graph.RechercheSigleLocal();
+        createFormateur = new projet.graph.CreateFormateur();
+        createCours = new projet.graph.CreateCours();
         createLocal = new projet.graph.CreateLocal();
+        rechercheMatriculeFormateur = new projet.graph.RechercheMatriculeFormateur();
+        rechercheNomCours = new projet.graph.RechercheNomCours();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuLocal = new javax.swing.JMenu();
         itemCreateLoc = new javax.swing.JMenuItem();
@@ -51,16 +68,20 @@ public class Gestion extends javax.swing.JFrame {
         itemRechDescLoc = new javax.swing.JMenuItem();
         menuFormateur = new javax.swing.JMenu();
         itemCreateForm = new javax.swing.JMenuItem();
-        itemRechNomForm = new javax.swing.JMenuItem();
+        itemRechMatriculeForm = new javax.swing.JMenuItem();
         menuCours = new javax.swing.JMenu();
         itemCreateCours = new javax.swing.JMenuItem();
-        itemRechNomCours = new javax.swing.JMenuItem();
+        itemRechMatiereCours = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
-        getContentPane().add(rechercheDescriptionLocal, "card3");
-        getContentPane().add(rechercheSigleLoc, "card4");
-        getContentPane().add(createLocal, "card2");
+        getContentPane().add(rechercheDescriptionLocal, "cardRechDescLoc");
+        getContentPane().add(rechercheSigleLoc, "cardRechSigleLoc");
+        getContentPane().add(createFormateur, "cardCreaForm");
+        getContentPane().add(createCours, "cardCreaCours");
+        getContentPane().add(createLocal, "cardCreaLoc");
+        getContentPane().add(rechercheMatriculeFormateur, "cardRechMatriculeForm");
+        getContentPane().add(rechercheNomCours, "cardRechCours");
 
         menuLocal.setText("Local");
 
@@ -100,13 +121,13 @@ public class Gestion extends javax.swing.JFrame {
         });
         menuFormateur.add(itemCreateForm);
 
-        itemRechNomForm.setText("Recherche Nom");
-        itemRechNomForm.addActionListener(new java.awt.event.ActionListener() {
+        itemRechMatriculeForm.setText("Recherche par matricule");
+        itemRechMatriculeForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemRechNomFormActionPerformed(evt);
+                itemRechMatriculeFormActionPerformed(evt);
             }
         });
-        menuFormateur.add(itemRechNomForm);
+        menuFormateur.add(itemRechMatriculeForm);
 
         jMenuBar1.add(menuFormateur);
 
@@ -120,13 +141,13 @@ public class Gestion extends javax.swing.JFrame {
         });
         menuCours.add(itemCreateCours);
 
-        itemRechNomCours.setText("Recherche Nom");
-        itemRechNomCours.addActionListener(new java.awt.event.ActionListener() {
+        itemRechMatiereCours.setText("Recherche Nom");
+        itemRechMatiereCours.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemRechNomCoursActionPerformed(evt);
+                itemRechMatiereCoursActionPerformed(evt);
             }
         });
-        menuCours.add(itemRechNomCours);
+        menuCours.add(itemRechMatiereCours);
 
         jMenuBar1.add(menuCours);
 
@@ -136,35 +157,35 @@ public class Gestion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemCreateLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCreateLocActionPerformed
-        cardl.show(this.getContentPane(), "cardCrea");
+        cardl.show(this.getContentPane(), "cardCreaLoc");
         
     }//GEN-LAST:event_itemCreateLocActionPerformed
 
     private void itemRechDescLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechDescLocActionPerformed
-        cardl.show(this.getContentPane(), "cardRechDesc");
+        cardl.show(this.getContentPane(), "cardRechDescLoc");
         
     }//GEN-LAST:event_itemRechDescLocActionPerformed
 
     private void itemCreateCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCreateCoursActionPerformed
-        // TODO add your handling code here:
+        cardl.show(this.getContentPane(), "cardCreaCours");
     }//GEN-LAST:event_itemCreateCoursActionPerformed
 
-    private void itemRechNomFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechNomFormActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemRechNomFormActionPerformed
+    private void itemRechMatriculeFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechMatriculeFormActionPerformed
+        cardl.show(this.getContentPane(), "cardRechMatriculeForm");
+    }//GEN-LAST:event_itemRechMatriculeFormActionPerformed
 
     private void itemRechSigleLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechSigleLocActionPerformed
-        cardl.show(this.getContentPane(), "cardRechSigle");
+        cardl.show(this.getContentPane(), "cardRechSigleLoc");
         
     }//GEN-LAST:event_itemRechSigleLocActionPerformed
 
     private void itemCreateFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCreateFormActionPerformed
-        // TODO add your handling code here:
+       cardl.show(this.getContentPane(), "cardCreaForm");
     }//GEN-LAST:event_itemCreateFormActionPerformed
 
-    private void itemRechNomCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechNomCoursActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemRechNomCoursActionPerformed
+    private void itemRechMatiereCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechMatiereCoursActionPerformed
+        cardl.show(this.getContentPane(), "cardRechCours");
+    }//GEN-LAST:event_itemRechMatiereCoursActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,19 +226,23 @@ public class Gestion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private projet.graph.CreateCours createCours;
+    private projet.graph.CreateFormateur createFormateur;
     private projet.graph.CreateLocal createLocal;
     private javax.swing.JMenuItem itemCreateCours;
     private javax.swing.JMenuItem itemCreateForm;
     private javax.swing.JMenuItem itemCreateLoc;
     private javax.swing.JMenuItem itemRechDescLoc;
-    private javax.swing.JMenuItem itemRechNomCours;
-    private javax.swing.JMenuItem itemRechNomForm;
+    private javax.swing.JMenuItem itemRechMatiereCours;
+    private javax.swing.JMenuItem itemRechMatriculeForm;
     private javax.swing.JMenuItem itemRechSigleLoc;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuCours;
     private javax.swing.JMenu menuFormateur;
     private javax.swing.JMenu menuLocal;
     private projet.graph.RechercheDescriptionLocal rechercheDescriptionLocal;
-    private projet.graph.RechercheSigleLoc rechercheSigleLoc;
+    private projet.graph.RechercheMatriculeFormateur rechercheMatriculeFormateur;
+    private projet.graph.RechercheNomCours rechercheNomCours;
+    private projet.graph.RechercheSigleLocal rechercheSigleLoc;
     // End of variables declaration//GEN-END:variables
 }

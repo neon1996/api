@@ -47,7 +47,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="projet.graph.RechercheSigleLoc" name="rechercheSigleLoc">
+    <Component class="projet.graph.RechercheSigleLocal" name="rechercheSigleLoc">
     </Component>
   </SubComponents>
 </Form>

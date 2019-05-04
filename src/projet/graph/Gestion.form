@@ -48,12 +48,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCreateFormActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemRechNomForm">
+            <MenuItem class="javax.swing.JMenuItem" name="itemRechMatriculeForm">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Recherche Nom"/>
+                <Property name="text" type="java.lang.String" value="Recherche par matricule"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechNomFormActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechMatriculeFormActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -71,12 +71,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCreateCoursActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemRechNomCours">
+            <MenuItem class="javax.swing.JMenuItem" name="itemRechMatiereCours">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Recherche Nom"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechNomCoursActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechMatiereCoursActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -102,6 +102,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,87,0,0,1,-91"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
@@ -109,21 +110,49 @@
     <Component class="projet.graph.RechercheDescriptionLocal" name="rechercheDescriptionLocal">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="card3"/>
+          <CardConstraints cardName="cardRechDescLoc"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="projet.graph.RechercheSigleLoc" name="rechercheSigleLoc">
+    <Component class="projet.graph.RechercheSigleLocal" name="rechercheSigleLoc">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="card4"/>
+          <CardConstraints cardName="cardRechSigleLoc"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="projet.graph.CreateFormateur" name="createFormateur">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardCreaForm"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="projet.graph.CreateCours" name="createCours">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardCreaCours"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="projet.graph.CreateLocal" name="createLocal">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="card2"/>
+          <CardConstraints cardName="cardCreaLoc"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="projet.graph.RechercheMatriculeFormateur" name="rechercheMatriculeFormateur">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardRechMatriculeForm"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="projet.graph.RechercheNomCours" name="rechercheNomCours">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardRechCours"/>
         </Constraint>
       </Constraints>
     </Component>

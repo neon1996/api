@@ -38,7 +38,7 @@ public class TestRechercheSigleLocal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rechercheSigleLoc = new projet.graph.RechercheSigleLoc();
+        rechercheSigleLoc = new projet.graph.RechercheSigleLocal();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +103,6 @@ public class TestRechercheSigleLocal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private projet.graph.RechercheSigleLoc rechercheSigleLoc;
+    private projet.graph.RechercheSigleLocal rechercheSigleLoc;
     // End of variables declaration//GEN-END:variables
 }
