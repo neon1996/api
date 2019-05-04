@@ -16,35 +16,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="butRechercher" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtDescription" min="-2" pref="129" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="butMaj" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                      <Component id="butEffacer" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="164" max="-2" attributes="0"/>
-                          <Component id="labDescription" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Component id="label1" min="-2" pref="164" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="labDescription" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtDescription" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="butRechDesc" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,64 +41,40 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="label1" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labDescription" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="butRechDesc" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtDescription" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace pref="48" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="butRechercher" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="butMaj" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="butEffacer" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="152" max="-2" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="txtDescription">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescriptionActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="labDescription">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Description"/>
+        <Property name="text" type="java.lang.String" value="Description du local"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="butEffacer">
+    <Component class="javax.swing.JLabel" name="label1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Supprimer Client"/>
+        <Property name="text" type="java.lang.String" value="Recherche avec description :"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butEffacerActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="butMaj">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="MAJ"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butMajActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="txtDescription">
     </Component>
-    <Component class="javax.swing.JButton" name="butRechercher">
+    <Component class="javax.swing.JButton" name="butRechDesc">
       <Properties>
         <Property name="text" type="java.lang.String" value="Rechercher"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butRechercherActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butRechDescActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Recherche via une description :"/>
-      </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
@@ -119,10 +84,10 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Id local" type="java.lang.Object"/>
-                <Column editable="true" title="Sigle" type="java.lang.Object"/>
-                <Column editable="true" title="Places" type="java.lang.Object"/>
-                <Column editable="true" title="Description" type="java.lang.Object"/>
+                <Column editable="false" title="idlocal" type="java.lang.Object"/>
+                <Column editable="false" title="sigle" type="java.lang.Object"/>
+                <Column editable="false" title="places" type="java.lang.Object"/>
+                <Column editable="false" title="description" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

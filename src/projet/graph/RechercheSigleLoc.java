@@ -5,17 +5,25 @@
  */
 package projet.graph;
 
+import javax.swing.JOptionPane;
+import projet.DAO.LocalDAO;
+import projet.metier.Local;
+
 /**
  *
  * @author Florence
  */
 public class RechercheSigleLoc extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RechercheLocal
-     */
+    LocalDAO localDAO = null;
+    Local loc = null;
+
     public RechercheSigleLoc() {
         initComponents();
+    }
+
+    public void setLocalDAO(LocalDAO localDAO) {
+        this.localDAO = localDAO;
     }
 
     /**
@@ -38,6 +46,7 @@ public class RechercheSigleLoc extends javax.swing.JPanel {
         butRechercherLocal = new javax.swing.JButton();
         butMajLocal = new javax.swing.JButton();
         butSupLocal = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         labIdlocal.setText("Id local");
 
@@ -47,6 +56,7 @@ public class RechercheSigleLoc extends javax.swing.JPanel {
 
         labDescription.setText("Description");
 
+        txtIdlocal.setEditable(false);
         txtIdlocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdlocalActionPerformed(evt);
@@ -66,6 +76,11 @@ public class RechercheSigleLoc extends javax.swing.JPanel {
         });
 
         butRechercherLocal.setText("Rechercher Local");
+        butRechercherLocal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                butRechercherLocalMouseClicked(evt);
+            }
+        });
         butRechercherLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 butRechercherLocalActionPerformed(evt);
@@ -86,6 +101,8 @@ public class RechercheSigleLoc extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText("Recherche d'un local par le sigle :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,50 +111,63 @@ public class RechercheSigleLoc extends javax.swing.JPanel {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(butRechercherLocal)
-                        .addGap(33, 33, 33)
-                        .addComponent(butMajLocal)
-                        .addGap(51, 51, 51)
-                        .addComponent(butSupLocal))
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labSigle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labPlaces)
-                            .addComponent(labDescription)
-                            .addComponent(labIdlocal))
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSigle, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdlocal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPlaces, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(butRechercherLocal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addComponent(butMajLocal))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labSigle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labPlaces)
+                                    .addComponent(labIdlocal)
+                                    .addComponent(labDescription))
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                    .addComponent(txtSigle, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                    .addComponent(txtPlaces)
+                                    .addComponent(txtIdlocal))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(butSupLocal)
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdlocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labIdlocal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labSigle, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSigle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labPlaces)
-                    .addComponent(txtPlaces, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labDescription)
-                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(labIdlocal))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtIdlocal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labPlaces)
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtPlaces, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labDescription, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(butRechercherLocal)
                     .addComponent(butMajLocal)
                     .addComponent(butSupLocal))
-                .addGap(32, 32, 32))
+                .addGap(44, 44, 44))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -154,22 +184,70 @@ public class RechercheSigleLoc extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPlacesActionPerformed
 
     private void butRechercherLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butRechercherLocalActionPerformed
-        // TODO add your handling code here:
+        try {
+            String sigle = txtSigle.getText();
+
+            loc = localDAO.readSigle(sigle);
+
+            txtIdlocal.setText("" + loc.getIdlocal());
+            txtPlaces.setText("" + loc.getPlaces());
+            txtDescription.setText(loc.getDescription());
+
+            JOptionPane.showMessageDialog(this, "Local trouvé", "succès", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_butRechercherLocalActionPerformed
 
     private void butMajLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMajLocalActionPerformed
-        // TODO add your handling code here:
+
+        try {
+
+            int idlocal = Integer.parseInt(txtIdlocal.getText());
+            String sigle = txtSigle.getText();
+
+            String description = txtDescription.getText();
+            int places = Integer.parseInt(txtPlaces.getText());
+
+            Local loc = new Local(idlocal, sigle, places, description);
+            localDAO.update(loc);
+            JOptionPane.showMessageDialog(this, "Local mis à jour", "succès", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_butMajLocalActionPerformed
 
     private void butSupLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSupLocalActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            String sigle = txtSigle.getText();
+
+            localDAO.delete(loc);
+            txtIdlocal.setText("");
+            txtSigle.setText("");
+            txtPlaces.setText("");
+            txtDescription.setText("");
+
+            JOptionPane.showMessageDialog(this, "Local effacé", "succès", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_butSupLocalActionPerformed
+
+    private void butRechercherLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_butRechercherLocalMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_butRechercherLocalMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butMajLocal;
     private javax.swing.JButton butRechercherLocal;
     private javax.swing.JButton butSupLocal;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labDescription;
     private javax.swing.JLabel labIdlocal;
     private javax.swing.JLabel labPlaces;

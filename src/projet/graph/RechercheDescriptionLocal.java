@@ -5,17 +5,34 @@
  */
 package projet.graph;
 
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projet.DAO.LocalDAO;
+import projet.metier.Local;
+
 /**
  *
  * @author Florence
  */
 public class RechercheDescriptionLocal extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RechercheDescriptionLocal
-     */
+    LocalDAO localDAO = null;
+
+    DefaultTableModel dft1 = new DefaultTableModel();
+
     public RechercheDescriptionLocal() {
         initComponents();
+        dft1.addColumn("idlocal");
+        dft1.addColumn("sigle");
+        dft1.addColumn("places");
+        dft1.addColumn("description");
+        jTable1.setModel(dft1);
+    }
+
+    public void setLocalDAO(LocalDAO localDAO) {
+        this.localDAO = localDAO;
     }
 
     /**
@@ -27,45 +44,23 @@ public class RechercheDescriptionLocal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtDescription = new javax.swing.JTextField();
         labDescription = new javax.swing.JLabel();
-        butEffacer = new javax.swing.JButton();
-        butMaj = new javax.swing.JButton();
-        butRechercher = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        txtDescription = new javax.swing.JTextField();
+        butRechDesc = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        txtDescription.addActionListener(new java.awt.event.ActionListener() {
+        labDescription.setText("Description du local");
+
+        label1.setText("Recherche avec description :");
+
+        butRechDesc.setText("Rechercher");
+        butRechDesc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescriptionActionPerformed(evt);
+                butRechDescActionPerformed(evt);
             }
         });
-
-        labDescription.setText("Description");
-
-        butEffacer.setText("Supprimer Client");
-        butEffacer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butEffacerActionPerformed(evt);
-            }
-        });
-
-        butMaj.setText("MAJ");
-        butMaj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butMajActionPerformed(evt);
-            }
-        });
-
-        butRechercher.setText("Rechercher");
-        butRechercher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butRechercherActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Recherche via une description :");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,9 +70,17 @@ public class RechercheDescriptionLocal extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Id local", "Sigle", "Places", "Description"
+                "idlocal", "sigle", "places", "description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -87,71 +90,66 @@ public class RechercheDescriptionLocal extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(butRechercher)
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(butMaj)
-                                        .addGap(45, 45, 45)
-                                        .addComponent(butEffacer)))))
-                        .addGap(52, 52, 52))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labDescription))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(labDescription)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(butRechDesc)))
+                .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labDescription)
+                    .addComponent(butRechDesc)
                     .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(butRechercher)
-                    .addComponent(butMaj)
-                    .addComponent(butEffacer))
-                .addContainerGap())
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void butMajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMajActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_butMajActionPerformed
+    private void butRechDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butRechDescActionPerformed
+        try {
+            String descriptionrech = txtDescription.getText();
+            System.out.println("descriptionrech");
+            List<Local> lcl = localDAO.rechDescription(descriptionrech);
+            int nr = dft1.getRowCount();
+            for (int i = nr - 1; i >= 0; i--) {
+                dft1.removeRow(i);
+            }
+            for (Local loc : lcl) {
 
-    private void butRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butRechercherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_butRechercherActionPerformed
+                Vector v = new Vector();
+                v.add(loc.getIdlocal());
+                v.add(loc.getSigle());
+                v.add(loc.getPlaces());
+                v.add(loc.getDescription());
+                dft1.addRow(v);
 
-    private void butEffacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butEffacerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_butEffacerActionPerformed
-
-    private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescriptionActionPerformed
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_butRechDescActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butEffacer;
-    private javax.swing.JButton butMaj;
-    private javax.swing.JButton butRechercher;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton butRechDesc;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labDescription;
+    private javax.swing.JLabel label1;
     private javax.swing.JTextField txtDescription;
     // End of variables declaration//GEN-END:variables
 }

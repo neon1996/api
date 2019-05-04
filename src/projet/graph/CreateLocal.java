@@ -21,7 +21,7 @@ public class CreateLocal extends javax.swing.JPanel {
         initComponents();
     }
     
-     public void setClientDAO(LocalDAO localDAO){
+     public void setLocalDAO(LocalDAO localDAO){
         this.localDAO=localDAO;
     }
 
@@ -46,6 +46,7 @@ public class CreateLocal extends javax.swing.JPanel {
 
         lbIdlocal.setText("Id local");
 
+        txtIdlocal.setEditable(false);
         txtIdlocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdlocalActionPerformed(evt);
