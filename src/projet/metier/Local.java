@@ -60,6 +60,8 @@ public class Local {
     public String toString() {
         return "Local{" + "idlocal=" + idlocal + ", sigle=" + sigle + ", places=" + places + ", description=" + description + '}';
     }
+    
+    // recherche description
 
     @Override
     public int hashCode() {

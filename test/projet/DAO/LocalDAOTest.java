@@ -162,7 +162,7 @@ public class LocalDAOTest {
      * @throws java.lang.Exception
      */
     @Test
-    public void testDelete() throws Exception {
+    public void testDelete() throws SQLException {
         System.out.println("delete");
         Local obj = new Local(0, "TestSigle",10, "TestDescription");
         LocalDAO instance = new LocalDAO();
@@ -202,7 +202,7 @@ public class LocalDAOTest {
         infos=infosd.create(infos);
        
        
-       /**
+       /*
         * A vérifier : Lorsque le try-catch est activé, le test ne fonctionne pas.
         * Il affiche le message du fail (+ erreur dans l'update car les données ne s'effacent pas de la BDD.
         
