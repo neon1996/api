@@ -53,7 +53,7 @@ public class RechercheDescriptionLocal extends javax.swing.JPanel {
 
         labDescription.setText("Description du local");
 
-        label1.setText("Recherche avec description :");
+        label1.setText("Recherche local avec description");
 
         butRechDesc.setText("Rechercher");
         butRechDesc.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +64,9 @@ public class RechercheDescriptionLocal extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},

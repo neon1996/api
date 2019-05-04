@@ -18,40 +18,36 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="butCreateLocal" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="lbDescription" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="45" max="32767" attributes="0"/>
-                          <Component id="txtDescription" min="-2" pref="101" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbIdlocal" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbPlaces" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbSigle" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="64" pref="64" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtIdlocal" pref="101" max="32767" attributes="0"/>
-                              <Component id="txtSigle" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtPlaces" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lbSigle" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lb1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbIdlocal" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="lbPlaces" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbDescription" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="butCreateLocal" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSigle" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="txtIdlocal" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="txtPlaces" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="txtDescription" min="-2" pref="101" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="210" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="lb1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbIdlocal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtIdlocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbIdlocal" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -63,14 +59,14 @@
                   <Component id="txtPlaces" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbPlaces" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtDescription" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbDescription" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDescription" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="butCreateLocal" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,6 +119,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescriptionActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cr&#xe9;ation d&apos;un local :"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

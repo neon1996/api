@@ -1,6 +1,8 @@
 
 package projet.metier;
-
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Objects;
 
 public class Cours {
     
@@ -9,11 +11,8 @@ public class Cours {
     protected int idcours;
     protected String matiere; 
     protected int heures; 
+    private Set<Sessioncours> sessioncours=new HashSet<>();
 
-    @Override
-    public String toString() {
-        return "Cours{" + "idcours=" + idcours + ", matiere=" + matiere + ", heures=" + heures + '}';
-    }
 
     public Cours() {
     }
@@ -46,6 +45,36 @@ public class Cours {
 
     public void setHeures(int heures) {
         this.heures = heures;
+    }
+    
+    @Override
+    public String toString() {
+        return "Cours{" + "idcours=" + idcours + ", matiere=" + matiere + ", heures=" + heures + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.matiere);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cours other = (Cours) obj;
+        if (!Objects.equals(this.matiere, other.matiere)) {
+            return false;
+        }
+        return true;
     }
     
     

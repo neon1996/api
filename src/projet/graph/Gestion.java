@@ -58,9 +58,9 @@ public class Gestion extends javax.swing.JFrame {
         rechercheSigleLoc = new projet.graph.RechercheSigleLocal();
         createFormateur = new projet.graph.CreateFormateur();
         createCours = new projet.graph.CreateCours();
-        createLocal = new projet.graph.CreateLocal();
         rechercheMatriculeFormateur = new projet.graph.RechercheMatriculeFormateur();
         rechercheNomCours = new projet.graph.RechercheNomCours();
+        createLocal = new projet.graph.CreateLocal();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuLocal = new javax.swing.JMenu();
         itemCreateLoc = new javax.swing.JMenuItem();
@@ -79,9 +79,9 @@ public class Gestion extends javax.swing.JFrame {
         getContentPane().add(rechercheSigleLoc, "cardRechSigleLoc");
         getContentPane().add(createFormateur, "cardCreaForm");
         getContentPane().add(createCours, "cardCreaCours");
-        getContentPane().add(createLocal, "cardCreaLoc");
         getContentPane().add(rechercheMatriculeFormateur, "cardRechMatriculeForm");
         getContentPane().add(rechercheNomCours, "cardRechCours");
+        getContentPane().add(createLocal, "cardCreaLoc");
 
         menuLocal.setText("Local");
 
