@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package projet.graph;
 
 import javax.swing.JOptionPane;
 import projet.DAO.LocalDAO;
 import projet.metier.Local;
 
-/**
- *
- * @author Florence
- */
 public class CreateLocal extends javax.swing.JPanel {
 
     LocalDAO localDAO=null;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,13 +16,162 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbDatefin" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbNbreinscrits" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbIdlocal" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbIdcours" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Component id="butCreationSessioncours" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtIdlocal" pref="100" max="32767" attributes="0"/>
+                                          <Component id="txtNbreinscrits" max="32767" attributes="0"/>
+                                          <Component id="txtIdcours" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace pref="41" max="32767" attributes="0"/>
+                                      <Component id="txtDatefin" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbIdform" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbDatedebut" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txtIdsesscours" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="txtDatedebut" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lb1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="409" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="lb1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lbIdform" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIdsesscours" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lbDatedebut" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDatedebut" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lbDatefin" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDatefin" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtNbreinscrits" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbNbreinscrits" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lbIdlocal" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIdlocal" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbIdcours" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIdcours" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="butCreationSessioncours" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="80" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lb1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cr&#xe9;ation d&apos;une session de cours :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbDatedebut">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Date Debut"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbDatefin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Date Fin"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbNbreinscrits">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nbr Etudiant "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbIdlocal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ID Local"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbIdcours">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ID Cours"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbIdform">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ID Session Cours"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="butCreationSessioncours">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cr&#xe9;ation"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butCreationSessioncoursActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNbreinscrits">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtIdlocal">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtIdcours">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdcoursActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtIdsesscours">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="txtDatedebut">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="txtDatefin">
+    </Component>
+  </SubComponents>
 </Form>
