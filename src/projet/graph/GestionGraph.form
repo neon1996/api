@@ -179,10 +179,10 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="projet.graph.RechercheIdformSessioncours" name="rechercheIdformSessioncours">
+    <Container class="projet.graph.CreateSessioncours" name="createSessioncours">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="cardRechIdformSesscours"/>
+          <CardConstraints cardName="cardCreaSessioncours"/>
         </Constraint>
       </Constraints>
 
@@ -199,10 +199,17 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="projet.graph.CreateSessioncours" name="createSessioncours">
+    <Component class="projet.graph.accueil_fond" name="accueil_fond">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="cardCreaSessioncours"/>
+          <CardConstraints cardName="cardAccueil"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Container class="projet.graph.RechercheIdformSessioncours" name="rechercheIdformSessioncours">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardRechIdformSesscours"/>
         </Constraint>
       </Constraints>
 

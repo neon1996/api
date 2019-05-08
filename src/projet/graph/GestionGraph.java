@@ -69,8 +69,9 @@ public class GestionGraph extends javax.swing.JFrame {
         rechercheMatriculeFormateur = new projet.graph.RechercheMatriculeFormateur();
         rechercheNomCours = new projet.graph.RechercheNomCours();
         createLocal = new projet.graph.CreateLocal();
-        rechercheIdformSessioncours = new projet.graph.RechercheIdformSessioncours();
         createSessioncours = new projet.graph.CreateSessioncours();
+        accueil_fond = new projet.graph.accueil_fond();
+        rechercheIdformSessioncours = new projet.graph.RechercheIdformSessioncours();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuLocal = new javax.swing.JMenu();
         itemCreateLoc = new javax.swing.JMenuItem();
@@ -96,19 +97,6 @@ public class GestionGraph extends javax.swing.JFrame {
         getContentPane().add(rechercheNomCours, "cardRechCours");
         getContentPane().add(createLocal, "cardCreaLoc");
 
-        javax.swing.GroupLayout rechercheIdformSessioncoursLayout = new javax.swing.GroupLayout(rechercheIdformSessioncours);
-        rechercheIdformSessioncours.setLayout(rechercheIdformSessioncoursLayout);
-        rechercheIdformSessioncoursLayout.setHorizontalGroup(
-            rechercheIdformSessioncoursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        rechercheIdformSessioncoursLayout.setVerticalGroup(
-            rechercheIdformSessioncoursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(rechercheIdformSessioncours, "cardRechIdformSesscours");
-
         javax.swing.GroupLayout createSessioncoursLayout = new javax.swing.GroupLayout(createSessioncours);
         createSessioncours.setLayout(createSessioncoursLayout);
         createSessioncoursLayout.setHorizontalGroup(
@@ -121,6 +109,20 @@ public class GestionGraph extends javax.swing.JFrame {
         );
 
         getContentPane().add(createSessioncours, "cardCreaSessioncours");
+        getContentPane().add(accueil_fond, "cardAccueil");
+
+        javax.swing.GroupLayout rechercheIdformSessioncoursLayout = new javax.swing.GroupLayout(rechercheIdformSessioncours);
+        rechercheIdformSessioncours.setLayout(rechercheIdformSessioncoursLayout);
+        rechercheIdformSessioncoursLayout.setHorizontalGroup(
+            rechercheIdformSessioncoursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        rechercheIdformSessioncoursLayout.setVerticalGroup(
+            rechercheIdformSessioncoursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 535, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(rechercheIdformSessioncours, "cardRechIdformSesscours");
 
         menuLocal.setText("Local");
 
@@ -297,6 +299,7 @@ public class GestionGraph extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private projet.graph.accueil_fond accueil_fond;
     private projet.graph.CreateCours createCours;
     private projet.graph.CreateFormateur createFormateur;
     private projet.graph.CreateLocal createLocal;
