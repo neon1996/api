@@ -3,17 +3,24 @@ package projet.menu;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 import myconnections.DBConnection;
 import projet.DAO.CoursDAO;
+import projet.DAO.SessioncoursDAO;
 import projet.metier.Cours;
+import projet.metier.Sessioncours;
 
 public class CoursMenu {
 
     Scanner sc = new Scanner(System.in);
 
     Cours coursActuel = null;
-    private CoursDAO coursDAO;
+    
+    private CoursDAO coursDAO=null;
+    
+    Sessioncours sessionActuel= null;
+    private SessioncoursDAO sessioncoursDAO=null;
 
     public void GestionCours() throws SQLException {
 
@@ -38,7 +45,9 @@ public class CoursMenu {
             System.out.println("Menu de Gestion des Cours : "
                     + "\n 1- Création d'un nouveau cours."
                     + "\n 2- Recherche d'un cours (nom du cours)."
-                    + "\n 3- Retour au menu principal.");
+                    + "\n "
+                    
+                    + "\n 4- Retour au menu principal.");
 
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
@@ -51,8 +60,8 @@ public class CoursMenu {
                 case 2:
                     rechercheCours();
                     break;
-                case 3:
-                    break;
+                    
+                case 3: break;
                 default:
                     System.out.println("Erreur");
                     break;
@@ -87,6 +96,7 @@ public class CoursMenu {
         System.out.println("Entrer le nom du cours recherché :");
         String matiere = sc.nextLine().toLowerCase();
         coursActuel = coursDAO.readMatiere(matiere);
+        
         System.out.println("Cours recherché : " + coursActuel);
         int choix = 0;
         do {
@@ -94,7 +104,9 @@ public class CoursMenu {
             System.out.println("\n Que souhaitez-vous faire ? : "
                     + "\n 1- Modification des infos du Cours :"
                     + "\n 2- Supprimer le cours :"
-                    + "\n 3- Retour ");
+                    + "\n 3- Afficher la session cours"
+                    
+                    + "\n 4- Retour ");
 
             System.out.println("\n Entrer votre choix : ");
             choix = sc.nextInt();
@@ -108,14 +120,16 @@ public class CoursMenu {
                 case 2:
                     deleteCours();
                     GestionCours();
-                case 3:
+                case 3 :
+                    rechercheSessCours();
+                case 4:
                     System.out.println("Retour au menu précédent ! ");
                     break;
 
                 default:
                     System.out.println("Erreur.");
             }
-        } while (choix != 3);
+        } while (choix != 4);
 
     }
 
@@ -166,4 +180,18 @@ public class CoursMenu {
         GestionCours(); // mettre le gestion dans un if, afin qu'il renvoie au menu si il y a eu suppression.
     }
 
+    public void rechercheSessCours(){
+        
+        
+        try {
+            List<Sessioncours> loc = ((SessioncoursDAO) sessioncoursDAO).RechCours_Sesscours(coursActuel.getIdcours());
+
+            for (Sessioncours scc : loc) { // boucle for afin d'afficher l'ArrayList
+                System.out.println(scc);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur (recherche session cours d'un cours) : " + e.getMessage());
+        }
+        
+    }
 }

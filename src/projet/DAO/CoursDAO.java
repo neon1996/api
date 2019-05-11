@@ -4,11 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import myconnections.DBConnection;
 import projet.metier.Cours;
+import projet.metier.Sessioncours;
 
 public class CoursDAO extends DAO<Cours> {
-Connection dbConnect = DBConnection.getConnection();
+
+    Connection dbConnect = DBConnection.getConnection();
+
     /**
      * création d'un cours sur base de son identifiant dans la bdd.
      *
@@ -46,7 +52,7 @@ Connection dbConnect = DBConnection.getConnection();
             }
         }
     }
-    
+
     /**
      * récupération des données d'un cours sur base de son identifiant
      * cours@throws SQLException local inconnu
@@ -55,7 +61,6 @@ Connection dbConnect = DBConnection.getConnection();
      * @return cours trouvé
      * @throws java.sql.SQLException
      */
-
     @Override
     public Cours read(int idcours) throws SQLException {
         String req = "select * from pro_cours where idcours = ?";
@@ -78,9 +83,10 @@ Connection dbConnect = DBConnection.getConnection();
             }
         }
     }
-/**
-     * récupération des données d'un cours sur base de son nom
-     * cours@throws SQLException cours inconnu
+
+    /**
+     * récupération des données d'un cours sur base de son nom cours@throws
+     * SQLException cours inconnu
      *
      * @param matiere
      * @return cours trouvé
@@ -127,7 +133,7 @@ Connection dbConnect = DBConnection.getConnection();
             int n = pstm.executeUpdate();
 
             System.out.println("Informations mise à jour !");
-            
+
         } catch (SQLException e) {
             System.out.println("Aucune ligne cours a été mise à jour");
         }
@@ -153,8 +159,9 @@ Connection dbConnect = DBConnection.getConnection();
             System.out.println("Le cours a été correctement supprimé de la base de données ! ");
 
         } catch (SQLException e) {
-            System.out.println("Aucune ligne effacée : le cours n'existe pas dans la BDD ! ");
+            System.out.println("Aucune ligne effacée : le cours n'existe pas ou est lié à une autre table ! ");
         }
     }
 
+    
 }

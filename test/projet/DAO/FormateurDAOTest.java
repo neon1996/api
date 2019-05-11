@@ -73,14 +73,14 @@ public class FormateurDAOTest {
         assertEquals("CP différents", expResult.getCp(), result.getCp());
         assertEquals("Tel différentes", expResult.getTelephone(), result.getTelephone());
 
-        assertNotEquals("Identifiant non généré", expResult.getIdform(), result.getIdform());
+        assertNotEquals("Identifiant non généré (formateur)", expResult.getIdform(), result.getIdform());
         int idform = result.getIdform();
 
         obj = new Formateur(0, "TestMatricule", "TestNom", "TestPrenom", "TestNumero2", "TestRue2", "TestLocalite2", 5000, "TestTel");
 
         try {
             obj = instance.create(obj);
-            fail("exception de doublon non générée");
+            fail("exception de doublon non générée (formateur)");
             instance.delete(obj);
 
         } catch (SQLException e) {
@@ -90,7 +90,7 @@ public class FormateurDAOTest {
 
         try {
             obj = instance.create(obj);
-            fail("exception de code postal non générée");
+            fail("exception de code postal non générée (formateur)");
             instance.delete(obj);
 
         } catch (Exception e) {
@@ -123,10 +123,10 @@ public class FormateurDAOTest {
         assertEquals("CP différents", expResult.getCp(), result.getCp());
         assertEquals("Tel différentes", expResult.getTelephone(), result.getTelephone());
 
-        assertEquals("id différents", expResult.getIdform(), result.getIdform());
+        assertEquals("id différents (formateur)", expResult.getIdform(), result.getIdform());
         try {
             result = instance.read(0);
-            fail("exception d'id inconnu non générée");
+            fail("exception d'id inconnu non générée (formateur)");
         } catch (SQLException e) {
         }
         instance.delete(result);
@@ -148,11 +148,11 @@ public class FormateurDAOTest {
         matricule = expResult.getMatricule();
         Formateur result = instance.readMatricule(matricule);
 
-        assertEquals("Matricules differents", expResult.getMatricule(), result.getMatricule());
+        assertEquals("Matricules differents (formateur)", expResult.getMatricule(), result.getMatricule());
 
         try {
             result = instance.read(0);
-            fail("Exception d'un code inconnu non géneré");
+            fail("Exception d'un code inconnu non géneré (formateur)");
         } catch (SQLException e) {
         }
         instance.delete(result);
@@ -209,7 +209,7 @@ public class FormateurDAOTest {
         instance.delete(obj);
         try {
             instance.read(obj.getIdform());
-            fail("exception de record introuvable non générée");
+            fail("exception de record introuvable non générée (formateur)");
         } catch (SQLException e) {
         }
     }

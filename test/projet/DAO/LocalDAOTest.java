@@ -65,14 +65,14 @@ public class LocalDAOTest {
         assertEquals("Places différents", expResult.getPlaces(), result.getPlaces());
         assertEquals("Descriptions différentes", expResult.getDescription(), result.getDescription());
 
-        assertNotEquals("Identifiant non généré", expResult.getIdlocal(), result.getIdlocal());
+        assertNotEquals("Identifiant non généré (local)", expResult.getIdlocal(), result.getIdlocal());
         int idlocal = result.getIdlocal();
 
         obj = new Local(0, "TestSigle", 5, "TestDescription");
 
         try {
             obj = instance.create(obj);
-            fail("exception de doublon non générée");
+            fail("exception de doublon non générée (local)");
             instance.delete(obj);
 
         } catch (SQLException e) {}
@@ -96,11 +96,11 @@ public class LocalDAOTest {
         sigle = expResult.getSigle();
         Local result = instance.readSigle(sigle);
 
-        assertEquals("Sigles differents", expResult.getSigle(), result.getSigle());
+        assertEquals("Sigles differents (local)", expResult.getSigle(), result.getSigle());
 
         try {
             result = instance.read(0);
-            fail("Exception d'un code inconnu non géneré");
+            fail("Exception d'un code inconnu non géneré (local)");
         } catch (SQLException e) {
         }
         instance.delete(result);
@@ -124,10 +124,10 @@ public class LocalDAOTest {
         assertEquals("Places différents", expResult.getPlaces(), result.getPlaces());
         assertEquals("Description différents", expResult.getDescription(), result.getDescription());
         //etc
-        assertEquals("id différents", expResult.getIdlocal(), result.getIdlocal());
+        assertEquals("id différents (local)", expResult.getIdlocal(), result.getIdlocal());
         try {
             result = instance.read(0); //0 est la seule valeur dans la bdd qui n'est pas donné dans la bdd car l'auto incrément commence à 1
-            fail("exception d'id inconnu non générée");
+            fail("exception d'id inconnu non générée (local)");
         } catch (SQLException e) {
         }
         instance.delete(result);
@@ -171,7 +171,7 @@ public class LocalDAOTest {
         instance.delete(obj);
         try {
             instance.read(obj.getIdlocal());
-            fail("exception de record introuvable non générée");
+            fail("exception de record introuvable non générée (local)");
         } catch (SQLException e) {
         }
         
@@ -239,10 +239,10 @@ public class LocalDAOTest {
 
         List<Local> result = instance.rechDescription(descriptionrech);
         if (result.indexOf(obj1) < 0) {
-            fail("record introuvable " + obj1);
+            fail("record introuvable (recherche local)" + obj1);
         }
         if (result.indexOf(obj2) < 0) {
-            fail("record introuvable " + obj2);
+            fail("record introuvable (recherche local) " + obj2);
         }
         instance.delete(obj1);
         instance.delete(obj2);

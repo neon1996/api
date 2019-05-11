@@ -68,7 +68,7 @@ public class CoursDAOTest {
         assertEquals("Matieres différentes", expResult.getMatiere(), result.getMatiere());
         assertEquals("Heures différentes", expResult.getHeures(), result.getHeures());
 
-        assertNotEquals("Identifiant non généré", expResult.getIdcours(), result.getIdcours());
+        assertNotEquals("Identifiant non généré (cours)", expResult.getIdcours(), result.getIdcours());
         int idcours = result.getIdcours();
 
         obj = new Cours(0, "TestMatiere", 5);
@@ -102,10 +102,10 @@ public class CoursDAOTest {
         assertEquals("Matiere différentes", expResult.getMatiere(), result.getMatiere());
         assertEquals("Heures différentes", expResult.getHeures(), result.getHeures());
 
-        assertEquals("id différents", expResult.getIdcours(), result.getIdcours());
+        assertEquals("id différents (cours)", expResult.getIdcours(), result.getIdcours());
         try {
             result = instance.read(0);
-            fail("exception d'id inconnu non générée");
+            fail("exception d'id inconnu non générée (cours)");
         } catch (SQLException e) {
         }
         instance.delete(result);
@@ -129,11 +129,11 @@ public class CoursDAOTest {
         matiere = expResult.getMatiere();
         Cours result = instance.readMatiere(matiere);
 
-        assertEquals("Matières differentes", expResult.getMatiere(), result.getMatiere());
+        assertEquals("Matières differentes (cours)", expResult.getMatiere(), result.getMatiere());
 
         try {
             result = instance.read(0);
-            fail("Exception d'un code inconnu non géneré");
+            fail("Exception d'un code inconnu non géneré (cours)");
         } catch (SQLException e) {}
         instance.delete(result);
     }
@@ -178,7 +178,7 @@ public class CoursDAOTest {
         instance.delete(obj);
         try {
             instance.read(obj.getIdcours());
-            fail("exception de record introuvable non générée");
+            fail("exception de record introuvable non générée (cours)");
         } catch (SQLException e) {
         }
     }

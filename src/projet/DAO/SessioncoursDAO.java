@@ -25,7 +25,7 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
             pstm1.setDate(2, java.sql.Date.valueOf(obj.getDateFin()));
             pstm1.setInt(3, obj.getNbreinscrits());
             pstm1.setInt(4, obj.getIdlocal());
-            pstm1.setInt(5, obj.getCours().getIdcours());
+            pstm1.setInt(5, obj.getIdcours());
 
             int n = pstm1.executeUpdate();
             if (n == 0) {
@@ -36,7 +36,7 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
             pstm2.setDate(2, java.sql.Date.valueOf(obj.getDateFin()));
             pstm2.setInt(3, obj.getNbreinscrits());
             pstm2.setInt(4, obj.getIdlocal());
-            pstm2.setInt(5, obj.getCours().getIdcours());
+            pstm2.setInt(5, obj.getIdcours());
 
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
@@ -75,6 +75,8 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
             }
         }
     }
+    
+    
 
     @Override
     public Sessioncours update(Sessioncours obj) throws SQLException {
@@ -87,7 +89,7 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
             pstm.setDate(2, java.sql.Date.valueOf(obj.getDateFin()));
             pstm.setInt(3, obj.getNbreinscrits());
             pstm.setInt(4, obj.getIdlocal());
-            pstm.setInt(5, obj.getCours().getIdcours());
+            pstm.setInt(5, obj.getIdcours());
             
             
 
@@ -145,4 +147,38 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
             }
         }
     }
+    
+    /* Méthode servent dans le SWING afin d'afficher la session_cours d'un cours recherché*/
+    public List<Sessioncours> RechCours_Sesscours(int idsesscoursrech) throws SQLException {
+        List<Sessioncours> rechsess = new ArrayList<>();
+        String req = "select * from pro_sessioncours where idcours = ? ";
+     
+
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setInt(1, idsesscoursrech);
+            try (ResultSet rs = pstm.executeQuery()) {
+                boolean trouve = false;
+                while (rs.next()) {
+                    trouve = true;
+                    int idsesscours = rs.getInt("IDSESSCOURS");
+                    LocalDate datedebut = rs.getDate("DATEDEBUT").toLocalDate();
+                    LocalDate datefin = rs.getDate("DATEFIN").toLocalDate();
+                    int nbreinscrits = rs.getInt("NBREINSCRITS");
+                    int idlocal = rs.getInt("IDLOCAL");
+                    int idcours = rs.getInt("IDCOURS");
+
+                    rechsess.add(new Sessioncours(idsesscours, datedebut, datefin, nbreinscrits, idlocal, idcours));
+                }
+
+                if (!trouve) {
+                    throw new SQLException("Identifiant de cours inconnu dans les sessions cours");
+                } else {
+                    return rechsess;
+                }
+            }
+        }
+
+    }
+    
+    
 }

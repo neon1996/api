@@ -8,13 +8,13 @@ import java.util.HashSet;
 public class Sessioncours {
 
     protected int idsesscours;
-
     protected LocalDate dateDebut;
     protected LocalDate dateFin;
     protected int nbreinscrits;
     protected int idlocal;
+    protected int idcours;
     
-    protected Cours cours = new Cours();
+   
 
     public Sessioncours() {
     }
@@ -25,19 +25,10 @@ public class Sessioncours {
         this.dateFin = dateFin;
         this.nbreinscrits = nbreinscrits;
         this.idlocal = idlocal;
-        
+        this.idcours = idcours;
     }
 
-    public Sessioncours(int idsesscours, LocalDate dateDebut, LocalDate dateFin, int nbreinscrits, int idlocal) {
-        this.idsesscours = idsesscours;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.nbreinscrits = nbreinscrits;
-        this.idlocal = idlocal;
-    }
-    
-    
-
+   
     public int getIdsesscours() {
         return idsesscours;
     }
@@ -78,22 +69,23 @@ public class Sessioncours {
         this.idlocal = idlocal;
     }
 
-    public Cours getCours() {
-        return cours;
+    public int getIdcours() {
+        return idcours;
     }
 
-    public void setCours(Cours cours) {
-        this.cours = cours;
+    public void setIdcours(int idcours) {
+        this.idcours = idcours;
     }
-
-
-    
-    
 
     @Override
     public String toString() {
-        return "Sessioncours{" + "idsesscours=" + idsesscours + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", nbreinscrits=" + nbreinscrits + ", idlocal=" + idlocal + '}';
+        return "Sessioncours{" + "idsesscours=" + idsesscours + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", nbreinscrits=" + nbreinscrits + ", idlocal=" + idlocal + ", idcours=" + idcours + '}';
     }
+
+   
+
+
+    
     
     
 }
