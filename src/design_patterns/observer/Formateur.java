@@ -50,13 +50,9 @@ public class Formateur extends Observer{
      */
     protected String tel;
     
-    protected Set<Infos> mesInfos = new HashSet<>();
+    protected Set<Sessioncours> maSession = new HashSet<>();
+
     
-    public Set<Infos> getMesInfos(){
-        return mesInfos;
-    }
-
-
     /**
      * @param idform identifiant unique du formateur, affecté par la base de données
      * @param nom nom du formateur
@@ -87,8 +83,6 @@ public class Formateur extends Observer{
     }
     
     
-    
-
     public int getIdform() {
         return idform;
     }
@@ -160,6 +154,10 @@ public class Formateur extends Observer{
     public void setTel(String tel) {
         this.tel = tel;
     }
+    
+    public Set<Sessioncours> getMaSession() {
+        return maSession;
+    }
 
     @Override
     public String toString() {
@@ -195,7 +193,7 @@ public class Formateur extends Observer{
 
     @Override
     public void update(String msg) {
-        System.out.println(prenom+ nom +"a reçu le msg :"+msg);
+        System.out.println(prenom+" "+ nom +" a reçu le msg : "+msg);
     }
     
 }

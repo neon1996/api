@@ -5,41 +5,19 @@ import java.util.Objects;
 
 public class Infos {
     protected int idinfos;
-    protected int idform;
-    protected int idsesscours;
+    protected Formateur monFormateur;
+    protected Sessioncours maSessioncours;
     protected int nbrheure;
-    
-    protected Formateur formateur;
-    protected Sessioncours sessioncours;
-
+   
     public Infos() {
     }
 
-    public Infos(int idinfos, int idform, int idsesscours, int nbrheure,Formateur formateur, Sessioncours sessioncours) {
+    public Infos(int idinfos, Formateur monFormateur, Sessioncours maSessioncours, int nbrheure) {
         this.idinfos = idinfos;
-        this.idform = idform;
-        this.idsesscours = idsesscours;
+        this.monFormateur = monFormateur;
+        this.maSessioncours = maSessioncours;
         this.nbrheure = nbrheure;
-        this.formateur = formateur;
-        this.sessioncours = sessioncours;
     }
-
-    public Formateur getFormateur() {
-        return formateur;
-    }
-
-    public void setFormateur(Formateur formateur) {
-        this.formateur = formateur;
-    }
-
-    public Sessioncours getSessioncours() {
-        return sessioncours;
-    }
-
-    public void setSessioncours(Sessioncours sessioncours) {
-        this.sessioncours = sessioncours;
-    }
-
 
     public int getIdinfos() {
         return idinfos;
@@ -49,20 +27,20 @@ public class Infos {
         this.idinfos = idinfos;
     }
 
-    public int getIdform() {
-        return idform;
+    public Formateur getMonFormateur() {
+        return monFormateur;
     }
 
-    public void setIdform(int idform) {
-        this.idform = idform;
+    public void setMonFormateur(Formateur monFormateur) {
+        this.monFormateur = monFormateur;
     }
 
-    public int getIdsesscours() {
-        return idsesscours;
+    public Sessioncours getMaSessioncours() {
+        return maSessioncours;
     }
 
-    public void setIdsesscours(int idsesscours) {
-        this.idsesscours = idsesscours;
+    public void setMaSessioncours(Sessioncours maSessioncours) {
+        this.maSessioncours = maSessioncours;
     }
 
     public int getNbrheure() {
@@ -74,17 +52,10 @@ public class Infos {
     }
 
     @Override
-    public String toString() {
-        return "Infos{" + "idinfos=" + idinfos + ", idform=" + idform + ", idsesscours=" + idsesscours + ", nbrheure=" + nbrheure + ", formateur=" + formateur + ", sessioncours=" + sessioncours + '}';
-    }
-
-    
-
-    @Override
     public int hashCode() {
         int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.formateur);
-        hash = 17 * hash + Objects.hashCode(this.sessioncours);
+        hash = 61 * hash + Objects.hashCode(this.monFormateur);
+        hash = 61 * hash + Objects.hashCode(this.maSessioncours);
         return hash;
     }
 
@@ -100,17 +71,20 @@ public class Infos {
             return false;
         }
         final Infos other = (Infos) obj;
-        if (!Objects.equals(this.formateur, other.formateur)) {
+        if (!Objects.equals(this.monFormateur, other.monFormateur)) {
             return false;
         }
-        if (!Objects.equals(this.sessioncours, other.sessioncours)) {
+        if (!Objects.equals(this.maSessioncours, other.maSessioncours)) {
             return false;
         }
         return true;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "Infos{" + "idinfos=" + idinfos + ", monFormateur=" + monFormateur + ", maSessioncours=" + maSessioncours + ", nbrheure=" + nbrheure + '}';
+    }
+
     
     
 }
