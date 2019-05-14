@@ -50,7 +50,7 @@ public class Formateur extends Observer{
      */
     protected String tel;
     
-    protected Set<Sessioncours> maSession = new HashSet<>();
+    protected Set<Infos> mesInfos = new HashSet<>();
 
     
     /**
@@ -154,10 +154,12 @@ public class Formateur extends Observer{
     public void setTel(String tel) {
         this.tel = tel;
     }
-    
-    public Set<Sessioncours> getMaSession() {
-        return maSession;
+
+    public Set<Infos> getMesInfos() {
+        return mesInfos;
     }
+    
+    
 
     @Override
     public String toString() {
@@ -189,9 +191,7 @@ public class Formateur extends Observer{
         return true;
     }
     
-    
-
-    @Override
+     @Override
     public void update(String msg) {
         System.out.println(prenom+" "+ nom +" a reçu le msg : "+msg);
     }

@@ -5,16 +5,16 @@ import java.util.Objects;
 
 public class Infos {
     protected int idinfos;
-    protected Formateur monFormateur;
+    protected int idform;
     protected Sessioncours maSessioncours;
     protected int nbrheure;
    
     public Infos() {
     }
 
-    public Infos(int idinfos, Formateur monFormateur, Sessioncours maSessioncours, int nbrheure) {
+    public Infos(int idinfos, int idform, Sessioncours maSessioncours, int nbrheure) {
         this.idinfos = idinfos;
-        this.monFormateur = monFormateur;
+        this.idform = idform;
         this.maSessioncours = maSessioncours;
         this.nbrheure = nbrheure;
     }
@@ -27,12 +27,12 @@ public class Infos {
         this.idinfos = idinfos;
     }
 
-    public Formateur getMonFormateur() {
-        return monFormateur;
+    public int getIdform() {
+        return idform;
     }
 
-    public void setMonFormateur(Formateur monFormateur) {
-        this.monFormateur = monFormateur;
+    public void setIdform(int idform) {
+        this.idform = idform;
     }
 
     public Sessioncours getMaSessioncours() {
@@ -53,9 +53,8 @@ public class Infos {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.monFormateur);
-        hash = 61 * hash + Objects.hashCode(this.maSessioncours);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.maSessioncours);
         return hash;
     }
 
@@ -71,9 +70,6 @@ public class Infos {
             return false;
         }
         final Infos other = (Infos) obj;
-        if (!Objects.equals(this.monFormateur, other.monFormateur)) {
-            return false;
-        }
         if (!Objects.equals(this.maSessioncours, other.maSessioncours)) {
             return false;
         }
@@ -82,7 +78,7 @@ public class Infos {
 
     @Override
     public String toString() {
-        return "Infos{" + "idinfos=" + idinfos + ", monFormateur=" + monFormateur + ", maSessioncours=" + maSessioncours + ", nbrheure=" + nbrheure + '}';
+        return "Infos{" + "idinfos=" + idinfos + ", idform=" + idform + ", maSessioncours=" + maSessioncours + ", nbrheure=" + nbrheure + '}';
     }
 
     

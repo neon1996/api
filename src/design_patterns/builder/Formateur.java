@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import projet.metier.Infos;
 
-public class Formateur_build {
+public class Formateur {
 
     /**
      * identifiant unique du formateur
@@ -50,6 +50,8 @@ public class Formateur_build {
      * numéro de téléphone du formateur
      */
     protected String tel;
+    
+    protected Set<Infos> mesInfos = new HashSet<>();
 
 
     /**
@@ -66,7 +68,7 @@ public class Formateur_build {
      */
     
     
-    private Formateur_build(FormateurBuilder fb) {
+    private Formateur(FormateurBuilder fb) {
 
         this.idform = fb.idform;
         this.nom = fb.nom;
@@ -139,7 +141,7 @@ public class Formateur_build {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Formateur_build other = (Formateur_build) obj;
+        final Formateur other = (Formateur) obj;
         if (this.idform != other.idform) {
             return false;
         }
@@ -198,28 +200,40 @@ public class Formateur_build {
         public FormateurBuilder(int idform, String matricule, String nom, String prenom) throws Exception {
 
             if (idform <= 0 || matricule == null || nom == null || prenom == null) {
-                throw new Exception("Informations incomplètes");
+                throw new Exception("Informations incomplètes ou non valide !");
             }
         }
+        
+        
 
-        public FormateurBuilder setIdform(int idform) {
-            this.idform = idform;
+        public FormateurBuilder setNumero(String numero) {
+            this.numero = numero;
             return this;
         }
 
-        public FormateurBuilder setMatricule(String matricule) {
-            this.matricule = matricule;
+        public FormateurBuilder setRue(String rue) {
+            this.rue = rue;
             return this;
         }
 
-        public FormateurBuilder setPrenom(String prenom) {
-            this.prenom = prenom;
+        public FormateurBuilder setLocalite(String localite) {
+            this.localite = localite;
+            return this;
+        }
+        
+        public FormateurBuilder setCp(int cp) {
+            this.cp = cp ;
+            return this;
+        }
+        
+        public FormateurBuilder setTel(String tel) {
+            this.tel = tel;
             return this;
         }
 
         
-        public Formateur_build build() throws Exception {
-            return new Formateur_build(this);
+        public Formateur build() throws Exception {
+            return new Formateur(this);
         }
 
     }

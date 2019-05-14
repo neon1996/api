@@ -67,7 +67,7 @@ public class Local extends Subject {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 7 + this.idlocal;
         hash = 19 * hash + Objects.hashCode(this.sigle);
         return hash;
     }
@@ -90,16 +90,9 @@ public class Local extends Subject {
         return true;
     }
 
-    
-    
-
-   
-    
-    
-    
-    @Override
+     @Override
     public String getNotification() {
-        return "Nouveau local : "+ idlocal + " = " +sigle; 
+        return "Nouveau local = " +sigle; 
     }
     
     
