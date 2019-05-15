@@ -6,7 +6,12 @@ public class Gestion {
 
         // identifiant = 0 ==> le formateur ne va pas se créer car condition de construction, l'id doit être > 0 !
         try {
-            Formateur f1 = new Formateur.FormateurBuilder(0, "Form", "Form", "Form").setLocalite("Mons").build();
+            Formateur f1 = new Formateur.FormateurBuilder()
+                    .setIdform(0)
+                    .setMatricule("Form")
+                    .setNom("Form")
+                    .setPrenom("Form")
+                    .setLocalite("Mons").build();
             System.out.println(f1);
 
         } catch (Exception e) {
@@ -14,11 +19,16 @@ public class Gestion {
         }
 
         try {
-            Formateur f2 = new Formateur.FormateurBuilder(1, "Form", "Form", "Form").setLocalite("Mons").build();
+            Formateur f2 = new Formateur.FormateurBuilder()
+                    .setIdform(1)
+                    .setMatricule("Form")
+                    .setNom("Form")
+                    .setPrenom("Form")
+                    .setLocalite("Mons").build();
             System.out.println(f2);
 
         } catch (Exception e) {
-            System.out.println("erreur f2 :" + e);
+            System.out.println("erreur f2 : " + e);
         }
 
     }

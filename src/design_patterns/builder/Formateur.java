@@ -50,12 +50,10 @@ public class Formateur {
      * numéro de téléphone du formateur
      */
     protected String tel;
-    
-    protected Set<Infos> mesInfos = new HashSet<>();
-
 
     /**
-     * @param idform identifiant unique du formateur, affecté par la base de données
+     * @param idform identifiant unique du formateur, affecté par la base de
+     * données
      * @param nom nom du formateur
      * @param prenom prenom du formateur
      * @param numero numero d'habitation du formateur
@@ -63,11 +61,9 @@ public class Formateur {
      * @param localite ville du formateur
      * @param cp code postal de la ville du formateur
      * @param tel telephone du formateur
-     * 
-     * @param fb 
+     *
+     * @param fb
      */
-    
-    
     private Formateur(FormateurBuilder fb) {
 
         this.idform = fb.idform;
@@ -117,7 +113,6 @@ public class Formateur {
         return tel;
     }
 
-
     @Override
     public String toString() {
         return "Formateur{" + "idform=" + idform + ", matricule=" + matricule + ", nom=" + nom + ", prenom=" + prenom + ", numero=" + numero + ", rue=" + rue + ", localite=" + localite + ", cp=" + cp + ", tel=" + tel + '}';
@@ -147,8 +142,6 @@ public class Formateur {
         }
         return true;
     }
-    
-    
 
     public static class FormateurBuilder {
 
@@ -197,14 +190,25 @@ public class Formateur {
          */
         protected String tel;
 
-        public FormateurBuilder(int idform, String matricule, String nom, String prenom) throws Exception {
-
-            if (idform <= 0 || matricule == null || nom == null || prenom == null) {
-                throw new Exception("Informations incomplètes ou non valide !");
-            }
+        public FormateurBuilder setIdform(int idform) {
+            this.idform = idform;
+            return this;
         }
-        
-        
+
+        public FormateurBuilder setNom(String nom) {
+            this.nom = nom;
+            return this;
+        }
+
+        public FormateurBuilder setPrenom(String prenom) {
+            this.prenom = prenom;
+            return this;
+        }
+
+        public FormateurBuilder setMatricule(String matricule) {
+            this.matricule = matricule;
+            return this;
+        }
 
         public FormateurBuilder setNumero(String numero) {
             this.numero = numero;
@@ -220,19 +224,21 @@ public class Formateur {
             this.localite = localite;
             return this;
         }
-        
+
         public FormateurBuilder setCp(int cp) {
-            this.cp = cp ;
+            this.cp = cp;
             return this;
         }
-        
+
         public FormateurBuilder setTel(String tel) {
             this.tel = tel;
             return this;
         }
 
-        
         public Formateur build() throws Exception {
+            if (idform <= 0 || matricule == null || nom == null || prenom == null) {
+                throw new Exception("Informations incomplètes ou non valide !");
+            }
             return new Formateur(this);
         }
 
