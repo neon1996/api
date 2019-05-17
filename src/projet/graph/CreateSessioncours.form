@@ -21,29 +21,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbDatefin" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbNbreinscrits" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbIdlocal" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbIdcours" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Component id="butCreationSessioncours" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtIdlocal" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <Component id="txtNbreinscrits" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <Component id="txtIdcours" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="txtDatefin" min="-2" pref="100" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
@@ -55,6 +32,23 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="txtDatedebut" min="-2" pref="100" max="-2" attributes="0"/>
                                       <Component id="txtIdsesscours" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbDatefin" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbNbreinscrits" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbIdlocal" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbIdcours" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="butCreationSessioncours" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtIdlocal" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="txtNbreinscrits" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="txtIdcours" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>

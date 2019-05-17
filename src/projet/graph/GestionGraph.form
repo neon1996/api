@@ -79,20 +79,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCreateCoursActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemRechMatiereCours">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Recherche Nom"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechMatiereCoursActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemRechIdCours">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Recherche IDCours"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechIdCoursActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemRechPartMatCours">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Recherche Part. Matiere"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechPartMatCoursActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -211,13 +211,6 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="projet.graph.RechercheNomCours" name="rechercheNomCours">
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="cardRechMatCours"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="projet.graph.CreateLocal" name="createLocal">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
@@ -257,6 +250,13 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="cardAffSessHeures"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="projet.graph.RechercheMatiereCours" name="rechercheMatiereCours">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="carRechPartCours"/>
         </Constraint>
       </Constraints>
     </Component>

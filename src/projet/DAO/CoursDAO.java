@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,36 +86,6 @@ public class CoursDAO extends DAO<Cours> {
     }
 
     /**
-     * récupération des données d'un cours sur base de son nom cours@throws
-     * SQLException cours inconnu
-     *
-     * @param matiere
-     * @return cours trouvé
-     * @throws java.sql.SQLException
-     */
-    public Cours readMatiere(String matiere) throws SQLException {
-        String req = "select * from pro_cours where lower(matiere) = ?";
-
-        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
-
-            pstm.setString(1, matiere);
-            try (ResultSet rs = pstm.executeQuery()) {
-                if (rs.next()) {
-
-                    int idcours = rs.getInt("IDCOURS");
-                    int heures = rs.getInt("HEURES");
-
-                    return new Cours(idcours, matiere, heures);
-
-                } else {
-                    throw new SQLException("Cours inconnu");
-                }
-
-            }
-        }
-    }
-
-    /**
      * mise à jour des données d'un Cours sur base de sa matiere
      *
      * @return Cours
@@ -124,9 +95,9 @@ public class CoursDAO extends DAO<Cours> {
     @Override
     public Cours update(Cours obj) throws SQLException {
 
-        String req = "update pro_cours set heures=? where matiere=?";
+        String req = "update pro_cours set heures=?, matiere=? where idcours=?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
-
+            pstm.setInt(3, obj.getIdcours());
             pstm.setString(2, obj.getMatiere());
             pstm.setInt(1, obj.getHeures());
 
@@ -150,18 +121,50 @@ public class CoursDAO extends DAO<Cours> {
      */
     @Override
     public void delete(Cours obj) throws SQLException {
-        String req = "delete from pro_cours where matiere= ?";
+        String req = "delete from pro_cours where idcours= ?";
+
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            pstm.setString(1, obj.getMatiere());
+            pstm.setInt(1, obj.getIdcours());
             int n = pstm.executeUpdate();
 
             System.out.println("Le cours a été correctement supprimé de la base de données ! ");
 
-        } catch (SQLException e) {
-            System.out.println("Aucune ligne effacée : le cours n'existe pas ou est lié à une autre table ! ");
+        } catch (SQLIntegrityConstraintViolationException custom) {
+            throw new SQLException("Impossible de supprimer car le cours est dans une session cours");
         }
+
     }
 
-    
+    public List<Cours> rechMatiere(String descriptionmat) throws SQLException {
+
+        List<Cours> searchmat = new ArrayList<>();
+
+        String req = "select * from pro_cours where lower(matiere) like ? ";
+
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setString(1, "%" + descriptionmat + "%");
+            try (ResultSet rs = pstm.executeQuery()) {
+                boolean trouve = false;
+                while (rs.next()) {
+
+                    trouve = true;
+
+                    int idcours = rs.getInt("IDCOURS");
+                    String matiere = rs.getString("MATIERE");
+                    int heures = rs.getInt("HEURES");
+
+                    searchmat.add(new Cours(idcours, matiere, heures));
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Erreur affichage (recherche cours - matiere) : " + e);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur requete cours (recherche cours - matiere)" + e);
+
+        }
+        return searchmat;
+    }
+
 }

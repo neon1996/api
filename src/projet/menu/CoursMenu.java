@@ -44,8 +44,8 @@ public class CoursMenu {
         do {
             System.out.println("Menu de Gestion des Cours : "
                     + "\n 1- Création d'un nouveau cours."
-                    + "\n 2- Recherche d'un cours (nom du cours)."
-                    + "\n "
+                    + "\n 2- Recherche exacte (idcours)."
+                    + "\n 3- Recherche partielle (matiere)"
                     
                     + "\n 4- Retour au menu principal.");
 
@@ -61,12 +61,13 @@ public class CoursMenu {
                     rechercheCours();
                     break;
                     
-                case 3: break;
+                case 3: rechercheMatCours();
+                        break;
                 default:
                     System.out.println("Erreur");
                     break;
             }
-        } while (choix != 3);
+        } while (choix != 4);
 
     }
 
@@ -93,9 +94,10 @@ public class CoursMenu {
 
     public void rechercheCours() throws SQLException {
 
-        System.out.println("Entrer le nom du cours recherché :");
-        String matiere = sc.nextLine().toLowerCase();
-        coursActuel = coursDAO.readMatiere(matiere);
+        System.out.println("Entrer l'id du cours recherché :");
+        int idcours = sc.nextInt();
+        sc.skip("\n");
+        coursActuel = coursDAO.read(idcours);
         
         System.out.println("Cours recherché : " + coursActuel);
         int choix = 0;
@@ -178,6 +180,24 @@ public class CoursMenu {
             System.out.println("Erreur (suppression cours) " + e.getMessage());
         }
         GestionCours(); // mettre le gestion dans un if, afin qu'il renvoie au menu si il y a eu suppression.
+    }
+    
+    public void rechercheMatCours(){
+        
+        System.out.println("Cours recherché (Matiere) : ");
+        /* respecter les majs et les minuscules pour trouver le local */
+
+        String matcours = sc.nextLine().toLowerCase();
+        try {
+            List<Cours> cours = coursDAO.rechMatiere(matcours);
+
+            for (Cours co : cours) { // boucle for afin d'afficher l'ArrayList
+                System.out.println(co);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur (recherche partielle matiere cours) : " + e.getMessage());
+        }
+        
     }
 
     public void rechercheSessCours(){

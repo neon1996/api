@@ -111,32 +111,7 @@ public class CoursDAOTest {
         instance.delete(result);
     }
 
-    /**
-     * Test of readMatiere method, of class CoursDAO.
-     * @throws java.lang.Exception
-     */
-   @Test
-    public void testReadMatiere() throws Exception {
-        System.out.println("readMatiere");
     
-        String matiere = "";
-        CoursDAO instance = new CoursDAO();
-        instance.setConnection(dbConnect);
-        
-        Cours obj = new Cours(0,"testmatiere", 10);
-        Cours expResult = instance.create(obj);
-        
-        matiere = expResult.getMatiere();
-        Cours result = instance.readMatiere(matiere);
-
-        assertEquals("Matières differentes (cours)", expResult.getMatiere(), result.getMatiere());
-
-        try {
-            result = instance.read(0);
-            fail("Exception d'un code inconnu non géneré (cours)");
-        } catch (SQLException e) {}
-        instance.delete(result);
-    }
      
     /**
      * Test of update method, of class CoursDAO.

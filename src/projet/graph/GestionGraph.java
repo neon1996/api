@@ -50,8 +50,8 @@ public class GestionGraph extends javax.swing.JFrame {
         rechercheDescriptionLocal.setLocalDAO(localDAO);
         
         createCours.setCoursDAO(coursDAO);
-        rechercheNomCours.setCoursDAO(coursDAO);
         rechercheIDCours.setCoursDAO(coursDAO);
+        rechercheMatiereCours.setCoursDAO(coursDAO);
         
         createFormateur.setFormateurDAO(formateurDAO);
         rechercheMatriculeFormateur.setFormateurDAO(formateurDAO);
@@ -80,13 +80,13 @@ public class GestionGraph extends javax.swing.JFrame {
         createFormateur = new projet.graph.CreateFormateur();
         createCours = new projet.graph.CreateCours();
         rechercheMatriculeFormateur = new projet.graph.RechercheMatriculeFormateur();
-        rechercheNomCours = new projet.graph.RechercheNomCours();
         createLocal = new projet.graph.CreateLocal();
         rechercheIDCours = new projet.graph.RechercheIDCours();
         createSessioncours = new projet.graph.CreateSessioncours();
         rechercheIdformSessioncours = new projet.graph.RechercheIdformSessioncours();
         affVue_Formateur = new projet.graph.AffVue_Formateur();
         affVue_SessionHeures = new projet.graph.AffVue_SessionHeures();
+        rechercheMatiereCours = new projet.graph.RechercheMatiereCours();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuAccueil = new javax.swing.JMenu();
         menuLocal = new javax.swing.JMenu();
@@ -98,8 +98,8 @@ public class GestionGraph extends javax.swing.JFrame {
         itemRechMatriculeForm = new javax.swing.JMenuItem();
         menuCours = new javax.swing.JMenu();
         itemCreateCours = new javax.swing.JMenuItem();
-        itemRechMatiereCours = new javax.swing.JMenuItem();
         itemRechIdCours = new javax.swing.JMenuItem();
+        itemRechPartMatCours = new javax.swing.JMenuItem();
         menuSessioncours = new javax.swing.JMenu();
         itemCreateSessioncours = new javax.swing.JMenuItem();
         itemRechIdformSessioncours = new javax.swing.JMenuItem();
@@ -115,13 +115,13 @@ public class GestionGraph extends javax.swing.JFrame {
         getContentPane().add(createFormateur, "cardCreaForm");
         getContentPane().add(createCours, "cardCreaCours");
         getContentPane().add(rechercheMatriculeFormateur, "cardRechMatriculeForm");
-        getContentPane().add(rechercheNomCours, "cardRechMatCours");
         getContentPane().add(createLocal, "cardCreaLoc");
         getContentPane().add(rechercheIDCours, "cardRechIDCours");
         getContentPane().add(createSessioncours, "cardCreaSessioncours");
         getContentPane().add(rechercheIdformSessioncours, "cardRechIdSesscours");
         getContentPane().add(affVue_Formateur, "cardAffVueForm");
         getContentPane().add(affVue_SessionHeures, "cardAffSessHeures");
+        getContentPane().add(rechercheMatiereCours, "carRechPartCours");
 
         menuAccueil.setText("Accueil");
         menuAccueil.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,14 +189,6 @@ public class GestionGraph extends javax.swing.JFrame {
         });
         menuCours.add(itemCreateCours);
 
-        itemRechMatiereCours.setText("Recherche Nom");
-        itemRechMatiereCours.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemRechMatiereCoursActionPerformed(evt);
-            }
-        });
-        menuCours.add(itemRechMatiereCours);
-
         itemRechIdCours.setText("Recherche IDCours");
         itemRechIdCours.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +196,14 @@ public class GestionGraph extends javax.swing.JFrame {
             }
         });
         menuCours.add(itemRechIdCours);
+
+        itemRechPartMatCours.setText("Recherche Part. Matiere");
+        itemRechPartMatCours.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRechPartMatCoursActionPerformed(evt);
+            }
+        });
+        menuCours.add(itemRechPartMatCours);
 
         jMenuBar1.add(menuCours);
 
@@ -279,10 +279,6 @@ public class GestionGraph extends javax.swing.JFrame {
        cardl.show(this.getContentPane(), "cardCreaForm");
     }//GEN-LAST:event_itemCreateFormActionPerformed
 
-    private void itemRechMatiereCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechMatiereCoursActionPerformed
-        cardl.show(this.getContentPane(), "cardRechMatCours");
-    }//GEN-LAST:event_itemRechMatiereCoursActionPerformed
-
     private void itemRechIdformSessioncoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechIdformSessioncoursActionPerformed
         cardl.show(this.getContentPane(), "cardRechIdSesscours");
     }//GEN-LAST:event_itemRechIdformSessioncoursActionPerformed
@@ -306,6 +302,10 @@ public class GestionGraph extends javax.swing.JFrame {
     private void itemVueSessHeuresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVueSessHeuresActionPerformed
        cardl.show(this.getContentPane(), "cardAffSessHeures");
     }//GEN-LAST:event_itemVueSessHeuresActionPerformed
+
+    private void itemRechPartMatCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechPartMatCoursActionPerformed
+        cardl.show(this.getContentPane(), "carRechPartCours");
+    }//GEN-LAST:event_itemRechPartMatCoursActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,8 +364,8 @@ public class GestionGraph extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRechDescLoc;
     private javax.swing.JMenuItem itemRechIdCours;
     private javax.swing.JMenuItem itemRechIdformSessioncours;
-    private javax.swing.JMenuItem itemRechMatiereCours;
     private javax.swing.JMenuItem itemRechMatriculeForm;
+    private javax.swing.JMenuItem itemRechPartMatCours;
     private javax.swing.JMenuItem itemRechSigleLoc;
     private javax.swing.JMenuItem itemVueForm;
     private javax.swing.JMenuItem itemVueSessHeures;
@@ -379,8 +379,8 @@ public class GestionGraph extends javax.swing.JFrame {
     private projet.graph.RechercheDescriptionLocal rechercheDescriptionLocal;
     private projet.graph.RechercheIDCours rechercheIDCours;
     private projet.graph.RechercheIdformSessioncours rechercheIdformSessioncours;
+    private projet.graph.RechercheMatiereCours rechercheMatiereCours;
     private projet.graph.RechercheMatriculeFormateur rechercheMatriculeFormateur;
-    private projet.graph.RechercheNomCours rechercheNomCours;
     private projet.graph.RechercheSigleLocal rechercheSigleLoc;
     // End of variables declaration//GEN-END:variables
 }
