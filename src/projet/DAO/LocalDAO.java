@@ -38,8 +38,7 @@ public class LocalDAO extends DAO<Local> {
             pstm2.setString(1, obj.getSigle());
             pstm2.setInt(2, obj.getPlaces());
             pstm2.setString(3, obj.getDescription());
-            
-            
+
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
                     int idlocal = rs.getInt(1);
@@ -162,8 +161,8 @@ public class LocalDAO extends DAO<Local> {
 
             System.out.println("Le local a été correctement supprimé de la base de données ! ");
 
-        } catch (SQLException e) {
-            System.out.println("Aucune ligne effacée : le local n'existe pas dans la BDD !");
+        } catch (SQLIntegrityConstraintViolationException custom) {
+            throw new SQLException("Impossible de supprimer car le local est lié à une autre table (sessioncours)");
         }
     }
 
@@ -205,5 +204,23 @@ public class LocalDAO extends DAO<Local> {
 
         }
         return searchdesc;
+    }
+
+    public List<Local> aff_comboLocal() throws SQLException {
+        List<Local> loc = new ArrayList();
+        String req = "select * from pro_local";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    int idlocal = rs.getInt("IDLOCAL");
+                    String sigle = rs.getString("SIGLE");
+                    int places = rs.getInt("PLACES");
+                    String description = rs.getString("DESCRIPTION");
+
+                    loc.add(new Local(idlocal, sigle, places, description));
+                }
+            }
+        }
+        return loc;
     }
 }

@@ -174,9 +174,34 @@ Connection dbConnect = DBConnection.getConnection();
 
             System.out.println("Le formateur a été correctement supprimé de la base de données ! ");
 
-        } catch (SQLException e) {
-            System.out.println("Aucune ligne effacée : le formateur n'existe pas dans la BDD !");
+        } catch (SQLIntegrityConstraintViolationException custom) {
+            throw new SQLException("Impossible de supprimer car le formateur est lié à une autre table (infos)");
         }
     }
 
+    public List<Formateur> aff_comboFormateur() throws SQLException{
+        List<Formateur> fo = new ArrayList();
+        String req = "select * from pro_formateur";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    
+                    int idform = rs.getInt("IDFORM");
+                    String matricule = rs.getString("MATRICULE");
+                    String nom = rs.getString("NOM");
+                    String prenom = rs.getString("PRENOM");
+                    String numero = rs.getString("NUMERO");
+                    String rue = rs.getString("RUE");
+                    String localite = rs.getString("LOCALITE");
+                    int cp = rs.getInt("CP");
+                    String tel = rs.getString("TEL");
+
+                    
+                    
+                    fo.add(new Formateur(idform, matricule, nom, prenom, numero, rue, localite, cp, tel));
+                }
+            }
+        }
+        return fo;
+}
 }

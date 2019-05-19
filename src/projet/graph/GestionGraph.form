@@ -43,29 +43,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuFormateur">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Formateur"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="itemCreateForm">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Creation Formateur"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCreateFormActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemRechMatriculeForm">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Recherche par matricule"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechMatriculeFormActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuCours">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cours"/>
@@ -93,6 +70,53 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechPartMatCoursActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuFormateur">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Formateur"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="itemCreateForm">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Creation Formateur"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCreateFormActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemRechMatriculeForm">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Recherche par matricule"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechMatriculeFormActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuInfos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Infos"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="itemInfos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Creation Infos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemInfosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemRechInfos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Recherche Infos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechInfosActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -257,6 +281,20 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="carRechPartCours"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="projet.graph.CreateInfos" name="createInfos">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardCreateInfos"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="projet.graph.RechercheIdinfos" name="rechercheIdinfos">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardRechInfos"/>
         </Constraint>
       </Constraints>
     </Component>

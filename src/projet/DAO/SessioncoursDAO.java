@@ -113,8 +113,8 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
 
             System.out.println("La session de cours a été correctement supprimée de la base de données ! ");
 
-        } catch (SQLException e) {
-            System.out.println("Aucune ligne effacée : la session de cours n'existe pas dans la BDD !");
+        } catch (SQLIntegrityConstraintViolationException custom) {
+            throw new SQLException("Impossible de supprimer - idsesscours lié à la table infos !");
         }
     }
     
@@ -180,5 +180,24 @@ public class SessioncoursDAO extends DAO<Sessioncours> {
 
     }
     
+    public List<Sessioncours> aff_comboSessioncours() throws SQLException{
+        List<Sessioncours> ssc = new ArrayList();
+        String req = "select * from pro_sessioncours";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    int idsesscours = rs.getInt("IDSESSCOURS");
+                    LocalDate datedebut = rs.getDate("DATEDEBUT").toLocalDate();
+                    LocalDate datefin = rs.getDate("DATEFIN").toLocalDate();
+                    int nbreinscrits = rs.getInt("NBREINSCRITS");
+                    int idlocal = rs.getInt("IDLOCAL");
+                    int idcours = rs.getInt("IDCOURS");
+                    
+                    ssc.add(new Sessioncours(idsesscours, datedebut, datefin, nbreinscrits, idlocal, idcours));
+                }
+            }
+        }
+        return ssc;
+}
     
 }

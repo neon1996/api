@@ -1,6 +1,8 @@
 
 package projet.graph;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import projet.DAO.SessioncoursDAO;
 import projet.metier.Sessioncours;
 
@@ -202,6 +204,8 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
         catch(Exception e){
         JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
     }
+
+
     }//GEN-LAST:event_butRechIdSesscoursActionPerformed
 
     private void txtIdsesscoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdsesscoursActionPerformed
@@ -233,6 +237,7 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
                 int idsesscours = Integer.parseInt(txtIdsesscours.getText());
 
                 sessioncoursDAO.delete(sc);
+                txtIdsesscours.setText("");
                 txtDatedebut.setText("");
                 txtDatefin.setText("");
                 txtNbreinscrits.setText("");
@@ -250,13 +255,11 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
     }//GEN-LAST:event_btSupprimerActionPerformed
 
     private void btMajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMajActionPerformed
-        try {
+      /*  try {
 
             int idsesscours = Integer.parseInt(txtIdsesscours.getText());
+           
             int nbreinscrits = Integer.parseInt(txtNbreinscrits.getText());
-            
-            
-            
             int idlocal = Integer.parseInt(txtIdlocal.getText());
             int idcours = Integer.parseInt(txtIdcours.getText());
             
@@ -267,6 +270,7 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),"ERREUR", JOptionPane.ERROR_MESSAGE);
         }
+*/
     }//GEN-LAST:event_btMajActionPerformed
 
 

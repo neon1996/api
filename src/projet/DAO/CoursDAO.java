@@ -166,5 +166,22 @@ public class CoursDAO extends DAO<Cours> {
         }
         return searchmat;
     }
+    
+    public List<Cours> aff_comboCours() throws SQLException{
+        List<Cours> co = new ArrayList();
+        String req = "select * from pro_cours";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    int idcours = rs.getInt("IDCOURS");
+                    String matiere = rs.getString("MATIERE");
+                    int heures = rs.getInt("HEURES");
+                    
+                    co.add(new Cours(idcours,matiere,heures));
+                }
+            }
+        }
+        return co;
+}
 
 }

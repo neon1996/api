@@ -1,4 +1,3 @@
-
 package projet.DAO;
 
 import java.sql.Connection;
@@ -8,11 +7,13 @@ import projet.metier.Infos;
 import java.time.LocalDate;
 import myconnections.DBConnection;
 
-public class InfosDAO extends DAO <Infos>{
-Connection dbConnect = DBConnection.getConnection();
+public class InfosDAO extends DAO<Infos> {
+
+    Connection dbConnect = DBConnection.getConnection();
+
     @Override
     public Infos create(Infos obj) throws SQLException {
-     String req1 = "insert into pro_infos(idform,idsesscours,nbrheure) values(?,?,?)";
+        String req1 = "insert into pro_infos(idform,idsesscours,nbrheure) values(?,?,?)";
         String req2 = "select idinfos from pro_infos where idform =? and idsesscours =?";
 
         try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1);
@@ -21,7 +22,6 @@ Connection dbConnect = DBConnection.getConnection();
             pstm1.setInt(1, obj.getIdform());
             pstm1.setInt(2, obj.getIdsesscours());
             pstm1.setInt(3, obj.getNbrheure());
-            
 
             int n = pstm1.executeUpdate();
             if (n == 0) {
@@ -30,7 +30,7 @@ Connection dbConnect = DBConnection.getConnection();
 
             pstm2.setInt(1, obj.getIdform());
             pstm2.setInt(2, obj.getIdsesscours());
-            
+
             try (ResultSet rs = pstm2.executeQuery()) {
                 if (rs.next()) {
                     int idinfos = rs.getInt(1);
@@ -40,11 +40,12 @@ Connection dbConnect = DBConnection.getConnection();
                     throw new SQLException("Erreur de création dans la table infos, introuvable");
                 }
             }
-        }}
+        }
+    }
 
     @Override
     public Infos read(int idinfos) throws SQLException {
-    String req = "select * from pro_infos where idinfos = ?";
+        String req = "select * from pro_infos where idinfos = ?";
 
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
@@ -55,7 +56,6 @@ Connection dbConnect = DBConnection.getConnection();
                     int idform = rs.getInt("IDFORM");
                     int idsesscours = rs.getInt("IDSESSCOURS");
                     int nbrheure = rs.getInt("NBRHEURE");
-                    
 
                     return new Infos(idinfos, idform, idsesscours, nbrheure);
                 } else {
@@ -63,20 +63,19 @@ Connection dbConnect = DBConnection.getConnection();
                 }
 
             }
-        }}
+        }
+    }
 
     @Override
     public Infos update(Infos obj) throws SQLException {
-  String req = "update pro_infos set idform=?,idsesscours=?,nbrheure=?"
+        String req = "update pro_infos set idform=?,idsesscours=?,nbrheure=?"
                 + " where idinfos=?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
-            
             pstm.setInt(4, obj.getIdinfos());
             pstm.setInt(1, obj.getIdform());
             pstm.setInt(2, obj.getIdsesscours());
             pstm.setInt(3, obj.getNbrheure());
-            
 
             int n = pstm.executeUpdate();
 
@@ -85,11 +84,12 @@ Connection dbConnect = DBConnection.getConnection();
         } catch (SQLException e) {
             System.out.println("Aucune ligne infos a été mise à jour");
         }
-        return obj;}
+        return obj;
+    }
 
     @Override
     public void delete(Infos obj) throws SQLException {
-    String req = "delete from pro_infos where idinfos= ?";
+        String req = "delete from pro_infos where idinfos= ?";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
 
             pstm.setInt(1, obj.getIdinfos());
@@ -97,8 +97,9 @@ Connection dbConnect = DBConnection.getConnection();
 
             System.out.println("Ligne de la table infos a été correctement supprimé de la base de données ! ");
 
-        } catch (SQLException e) {
-            System.out.println("Aucune ligne effacée : le formateur n'existe pas dans la BDD !");
-        }}
-    
+        } catch (SQLIntegrityConstraintViolationException custom) {
+            throw new SQLException("Impossible de supprimer - données liées à d'autre(s) table(s) ");
+        }
+    }
+
 }
