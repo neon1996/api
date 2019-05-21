@@ -153,7 +153,7 @@ public class RechercheIdinfos extends javax.swing.JPanel {
             txtNbrheure.setText("");
            
 
-            JOptionPane.showMessageDialog(this, "Formateur effacé", "succès", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Données effacées dans la table infos", "succès", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
         }

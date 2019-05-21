@@ -61,6 +61,10 @@ public class Local {
         return "Local{" + "idlocal=" + idlocal + ", sigle=" + sigle + ", places=" + places + ", description=" + description + '}';
     }
     
+    public String toStringComboLocal() {
+        return "Local{" + "idlocal=" + idlocal + ", sigle=" + sigle + ", places=" + places +'}';
+    }
+    
     // recherche description
 
     @Override

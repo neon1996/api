@@ -37,12 +37,11 @@ public class CreateSessioncours extends javax.swing.JPanel {
 
     public CreateSessioncours() {
         initComponents();
-        comboLocal();
-        comboCours();
+       
     }
 
     public void comboLocal() {
-        try {
+       /* try {
             loc1 = (List<Local>) localDAO.aff_comboLocal();
 
            // System.out.println(loc1); // affic controle output
@@ -54,12 +53,30 @@ public class CreateSessioncours extends javax.swing.JPanel {
 
         } catch (Exception e) {
             System.out.println("Exception" + e);
+        }*/
+       
+        try {
+            loc1 = localDAO.aff_comboLocal();
+
+            if (comboIdlocal != null) {
+                comboIdlocal.removeAllItems();
+
+            }
+            System.out.println(loc1);
+            for (int i = 0; i < loc1.size(); i++) {
+                dlm.addElement(loc1.get(i).toStringComboLocal());
+
+            }
+            comboIdlocal.setModel(dlm);
+
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
         }
 
     }
     
      public void comboCours(){
-         try {
+         /*try {
             co1 = (List<Cours>) coursDAO.aff_comboCours();
 
             // System.out.println(co1); // affic controle output
@@ -68,6 +85,24 @@ public class CreateSessioncours extends javax.swing.JPanel {
 
             }
             comboIdcours.setModel(dlm1); // modifie le model du combo box afin d'afficher la liste
+
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
+        }*/
+         
+         try {
+            co1 = coursDAO.aff_comboCours();
+
+            if (comboIdcours != null) {
+                comboIdcours.removeAllItems();
+
+            }
+            System.out.println(co1);
+            for (int i = 0; i < co1.size(); i++) {
+                dlm1.addElement(co1.get(i).toString());
+
+            }
+            comboIdcours.setModel(dlm1);
 
         } catch (Exception e) {
             System.out.println("Exception" + e);
@@ -120,7 +155,7 @@ public class CreateSessioncours extends javax.swing.JPanel {
 
         lbIdcours.setText("ID Cours");
 
-        lbIdform.setText("ID Session Cours");
+        lbIdform.setText("ID Session");
 
         butCreationSessioncours.setText("Création");
         butCreationSessioncours.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +173,11 @@ public class CreateSessioncours extends javax.swing.JPanel {
         comboIdlocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboIdcours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboIdcours.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboIdcoursActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -146,34 +186,36 @@ public class CreateSessioncours extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lbIdform)
-                                        .addComponent(lbDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(28, 28, 28)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtIdsesscours, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbIdform)
+                                .addGap(58, 58, 58)
+                                .addComponent(txtIdsesscours, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbDatefin)
-                                    .addComponent(lbNbreinscrits)
-                                    .addComponent(lbIdlocal)
-                                    .addComponent(lbIdcours))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(butCreationSessioncours)
-                                    .addComponent(txtNbreinscrits, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboIdlocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboIdcours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lbDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(txtDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbNbreinscrits)
+                                            .addComponent(lbIdlocal)
+                                            .addComponent(lbDatefin)
+                                            .addComponent(lbIdcours))
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(butCreationSessioncours)
+                                            .addComponent(txtNbreinscrits, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(comboIdlocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(comboIdcours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lb1)))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,28 +227,28 @@ public class CreateSessioncours extends javax.swing.JPanel {
                     .addComponent(lbIdform)
                     .addComponent(txtIdsesscours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbDatedebut)
                     .addComponent(txtDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbDatefin)
                     .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNbreinscrits)
                     .addComponent(txtNbreinscrits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbIdlocal)
                     .addComponent(comboIdlocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbIdcours)
                     .addComponent(comboIdcours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(34, 34, 34)
                 .addComponent(butCreationSessioncours)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -253,6 +295,10 @@ public class CreateSessioncours extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_butCreationSessioncoursActionPerformed
+
+    private void comboIdcoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboIdcoursActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboIdcoursActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

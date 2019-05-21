@@ -35,6 +35,10 @@ public class Formateur {
         return "Formateur{" + "idform=" + idform + ", matricule=" + matricule + ", nom=" + nom + ", prenom=" + prenom + ", rue=" + rue + ", numero=" + numero + ", localite=" + localite + ", cp=" + cp + ", telephone=" + telephone + '}';
     }
     
+    public String toStringComboForm() {
+        return "Formateur{" + "idform=" + idform + ", matricule=" + matricule + ", nom=" + nom + ", prenom=" + prenom + '}';
+    }
+    
     
 
     public int getIdform() {

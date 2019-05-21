@@ -82,7 +82,9 @@ public class Sessioncours {
         return "Sessioncours{" + "idsesscours=" + idsesscours + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", nbreinscrits=" + nbreinscrits + ", idlocal=" + idlocal + ", idcours=" + idcours + '}';
     }
 
-   
+   public String toStringComboSess() {
+        return "Sessioncours{" + "idsesscours=" + idsesscours + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin +'}';
+    }
 
 
     

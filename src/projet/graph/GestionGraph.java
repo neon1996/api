@@ -337,6 +337,8 @@ public class GestionGraph extends javax.swing.JFrame {
     }//GEN-LAST:event_itemRechIdformSessioncoursActionPerformed
 
     private void itemCreateSessioncoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCreateSessioncoursActionPerformed
+        createSessioncours.comboCours();
+        createSessioncours.comboLocal();
         cardl.show(this.getContentPane(), "cardCreaSessioncours");
     }//GEN-LAST:event_itemCreateSessioncoursActionPerformed
 
@@ -361,7 +363,9 @@ public class GestionGraph extends javax.swing.JFrame {
     }//GEN-LAST:event_itemRechPartMatCoursActionPerformed
 
     private void itemInfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemInfosActionPerformed
-       cardl.show(this.getContentPane(), "cardCreateInfos");
+       createInfos.comboFormateur();
+       createInfos.comboSessioncours();
+        cardl.show(this.getContentPane(), "cardCreateInfos");
     }//GEN-LAST:event_itemInfosActionPerformed
 
     private void itemRechInfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechInfosActionPerformed
