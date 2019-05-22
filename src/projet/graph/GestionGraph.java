@@ -108,7 +108,7 @@ public class GestionGraph extends javax.swing.JFrame {
         createLocal = new projet.graph.CreateLocal();
         rechercheIDCours = new projet.graph.RechercheIDCours();
         createSessioncours = new projet.graph.CreateSessioncours();
-        rechercheIdformSessioncours = new projet.graph.RechercheIdformSessioncours();
+        rechercheIdformSessioncours = new projet.graph.RechercheIdSessioncours();
         affVue_Formateur = new projet.graph.AffVue_Formateur();
         affVue_SessionHeures = new projet.graph.AffVue_SessionHeures();
         rechercheMatiereCours = new projet.graph.RechercheMatiereCours();
@@ -418,7 +418,7 @@ public class GestionGraph extends javax.swing.JFrame {
     private javax.swing.JMenu menuVue;
     private projet.graph.RechercheDescriptionLocal rechercheDescriptionLocal;
     private projet.graph.RechercheIDCours rechercheIDCours;
-    private projet.graph.RechercheIdformSessioncours rechercheIdformSessioncours;
+    private projet.graph.RechercheIdSessioncours rechercheIdformSessioncours;
     private projet.graph.RechercheIdinfos rechercheIdinfos;
     private projet.graph.RechercheMatiereCours rechercheMatiereCours;
     private projet.graph.RechercheMatriculeFormateur rechercheMatriculeFormateur;

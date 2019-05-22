@@ -6,14 +6,14 @@ import javax.swing.JTextField;
 import projet.DAO.SessioncoursDAO;
 import projet.metier.Sessioncours;
 
-public class RechercheIdformSessioncours extends javax.swing.JPanel {
+public class RechercheIdSessioncours extends javax.swing.JPanel {
 
     SessioncoursDAO sessioncoursDAO = null;
     Sessioncours sc = null;
 
     
     
-    public RechercheIdformSessioncours() {
+    public RechercheIdSessioncours() {
         initComponents();
     }
 
@@ -31,8 +31,6 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtIdsesscours = new javax.swing.JTextField();
-        txtDatedebut = new javax.swing.JTextField();
-        txtDatefin = new javax.swing.JTextField();
         txtNbreinscrits = new javax.swing.JTextField();
         txtIdlocal = new javax.swing.JTextField();
         txtIdcours = new javax.swing.JTextField();
@@ -41,6 +39,8 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btMaj = new javax.swing.JButton();
         btSupprimer = new javax.swing.JButton();
+        txtDatedebut = new javax.swing.JFormattedTextField();
+        txtDatefin = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("Recherche Session Cours via ID Sess :");
 
@@ -60,18 +60,6 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
         txtIdsesscours.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdsesscoursActionPerformed(evt);
-            }
-        });
-
-        txtDatedebut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDatedebutActionPerformed(evt);
-            }
-        });
-
-        txtDatefin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDatefinActionPerformed(evt);
             }
         });
 
@@ -113,6 +101,11 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
             }
         });
 
+        txtDatedebut.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+        txtDatedebut.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        txtDatefin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,18 +128,19 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtNbreinscrits, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtIdsesscours, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))
                             .addComponent(txtIdcours, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btMaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtIdsesscours, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(txtDatedebut))
+                                .addGap(10, 10, 10)
                                 .addComponent(butRechIdSesscours)))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,13 +155,13 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(butRechIdSesscours)))
+                        .addComponent(butRechIdSesscours)
+                        .addComponent(txtDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btMaj))
+                    .addComponent(btMaj)
+                    .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNbreinscrits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,7 +175,7 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdcours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,14 +205,6 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
     private void txtIdsesscoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdsesscoursActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdsesscoursActionPerformed
-
-    private void txtDatedebutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatedebutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDatedebutActionPerformed
-
-    private void txtDatefinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatefinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDatefinActionPerformed
 
     private void txtNbreinscritsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNbreinscritsActionPerformed
         // TODO add your handling code here:
@@ -255,10 +241,22 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
     }//GEN-LAST:event_btSupprimerActionPerformed
 
     private void btMajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMajActionPerformed
-      /*  try {
+        try {
 
             int idsesscours = Integer.parseInt(txtIdsesscours.getText());
-           
+           String datedeb = txtDatedebut.getText();
+            int jourd = Integer.parseInt(datedeb.substring(0, 2)); //substring permet de délimiter les nombres que l'on prend de la chaine de caract
+            int moisd = Integer.parseInt(datedeb.substring(4, 5));
+            int and = Integer.parseInt(datedeb.substring(6));
+            
+            String datef = txtDatefin.getText();
+            int jourf = Integer.parseInt(datef.substring(0, 2)); //substring permet de délimiter les nombres que l'on prend de la chaine de caract
+            int moisf = Integer.parseInt(datef.substring(4, 5));
+            int anf = Integer.parseInt(datef.substring(6));
+
+            LocalDate datefin = LocalDate.of(anf, moisf, jourf);
+
+            LocalDate datedebut = LocalDate.of(and, moisd, jourd);
             int nbreinscrits = Integer.parseInt(txtNbreinscrits.getText());
             int idlocal = Integer.parseInt(txtIdlocal.getText());
             int idcours = Integer.parseInt(txtIdcours.getText());
@@ -270,7 +268,7 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(),"ERREUR", JOptionPane.ERROR_MESSAGE);
         }
-*/
+
     }//GEN-LAST:event_btMajActionPerformed
 
 
@@ -285,8 +283,8 @@ public class RechercheIdformSessioncours extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lbIdsesscours;
-    private javax.swing.JTextField txtDatedebut;
-    private javax.swing.JTextField txtDatefin;
+    private javax.swing.JFormattedTextField txtDatedebut;
+    private javax.swing.JFormattedTextField txtDatefin;
     private javax.swing.JTextField txtIdcours;
     private javax.swing.JTextField txtIdlocal;
     private javax.swing.JTextField txtIdsesscours;

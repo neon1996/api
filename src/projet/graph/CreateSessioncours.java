@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -32,83 +33,57 @@ public class CreateSessioncours extends javax.swing.JPanel {
     List<Cours> co1;
 
     DefaultComboBoxModel dlm = new DefaultComboBoxModel();
-    
+
     DefaultComboBoxModel dlm1 = new DefaultComboBoxModel();
 
     public CreateSessioncours() {
         initComponents();
-       
+
     }
 
     public void comboLocal() {
-       /* try {
-            loc1 = (List<Local>) localDAO.aff_comboLocal();
-
-           // System.out.println(loc1); // affic controle output
-            for (int i = 0; i < loc1.size(); i++) {
-                dlm.addElement(loc1.get(i).getIdlocal());
-
-            }
-            comboIdlocal.setModel(dlm); // modifie le model du combo box afin d'afficher la liste
-
-        } catch (Exception e) {
-            System.out.println("Exception" + e);
-        }*/
        
+
         try {
             loc1 = localDAO.aff_comboLocal();
-
             if (comboIdlocal != null) {
                 comboIdlocal.removeAllItems();
-
             }
-            System.out.println(loc1);
-            for (int i = 0; i < loc1.size(); i++) {
-                dlm.addElement(loc1.get(i).toStringComboLocal());
-
+            Iterator<Local> itloc = loc1.iterator();
+            while (itloc.hasNext()) {
+                Local loc = itloc.next();
+                dlm.addElement(loc.toStringComboLocal());
             }
+           
             comboIdlocal.setModel(dlm);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
         }
 
     }
-    
-     public void comboCours(){
-         /*try {
-            co1 = (List<Cours>) coursDAO.aff_comboCours();
 
-            // System.out.println(co1); // affic controle output
-            for (int i = 0; i < co1.size(); i++) {
-                dlm1.addElement(co1.get(i).getIdcours());
+    public void comboCours() {
+      
 
-            }
-            comboIdcours.setModel(dlm1); // modifie le model du combo box afin d'afficher la liste
-
-        } catch (Exception e) {
-            System.out.println("Exception" + e);
-        }*/
-         
-         try {
+        try {
             co1 = coursDAO.aff_comboCours();
-
             if (comboIdcours != null) {
                 comboIdcours.removeAllItems();
-
             }
-            System.out.println(co1);
-            for (int i = 0; i < co1.size(); i++) {
-                dlm1.addElement(co1.get(i).toString());
-
+            Iterator<Cours> itco = co1.iterator();
+            while (itco.hasNext()) {
+                Cours co = itco.next();
+                dlm1.addElement(co.toString());
             }
+            
             comboIdcours.setModel(dlm1);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
         }
-            
-        }
+
+    }
 
     public void setSessioncoursDAO(SessioncoursDAO sessioncoursDAO) {
         this.sessioncoursDAO = sessioncoursDAO;
@@ -121,8 +96,6 @@ public class CreateSessioncours extends javax.swing.JPanel {
     public void setCoursDAO(CoursDAO coursDAO) {
         this.coursDAO = coursDAO;
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -138,10 +111,10 @@ public class CreateSessioncours extends javax.swing.JPanel {
         butCreationSessioncours = new javax.swing.JButton();
         txtNbreinscrits = new javax.swing.JTextField();
         txtIdsesscours = new javax.swing.JTextField();
-        txtDatedebut = new com.toedter.calendar.JDateChooser();
-        txtDatefin = new com.toedter.calendar.JDateChooser();
         comboIdlocal = new javax.swing.JComboBox<>();
         comboIdcours = new javax.swing.JComboBox<>();
+        txDatedebut = new javax.swing.JFormattedTextField();
+        txDatefin = new javax.swing.JFormattedTextField();
 
         lb1.setText("Création d'une session de cours :");
 
@@ -166,10 +139,6 @@ public class CreateSessioncours extends javax.swing.JPanel {
 
         txtIdsesscours.setEditable(false);
 
-        txtDatedebut.setDateFormatString("dd-MM-yyyy");
-
-        txtDatefin.setDateFormatString("dd-MM-yyyy");
-
         comboIdlocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboIdcours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -178,6 +147,10 @@ public class CreateSessioncours extends javax.swing.JPanel {
                 comboIdcoursActionPerformed(evt);
             }
         });
+
+        txDatedebut.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+
+        txDatefin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -189,16 +162,9 @@ public class CreateSessioncours extends javax.swing.JPanel {
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbIdform)
-                                .addGap(58, 58, 58)
-                                .addComponent(txtIdsesscours, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(49, 49, 49)
-                                        .addComponent(txtDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lbDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lbNbreinscrits)
@@ -209,13 +175,20 @@ public class CreateSessioncours extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(butCreationSessioncours)
                                             .addComponent(txtNbreinscrits, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(comboIdlocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(comboIdcours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                            .addComponent(comboIdcours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(lbIdform)
+                                    .addGap(58, 58, 58)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txDatedebut)
+                                        .addComponent(txtIdsesscours, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lb1)))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,14 +199,14 @@ public class CreateSessioncours extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbIdform)
                     .addComponent(txtIdsesscours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbDatedebut)
-                    .addComponent(txtDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txDatedebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbDatefin)
-                    .addComponent(txtDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txDatefin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNbreinscrits)
@@ -248,21 +221,23 @@ public class CreateSessioncours extends javax.swing.JPanel {
                     .addComponent(comboIdcours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(butCreationSessioncours)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void butCreationSessioncoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCreationSessioncoursActionPerformed
 
         try {
-            String datedeb = ((JTextField) txtDatedebut.getDateEditor().getUiComponent()).getText();
+          /*  String datedeb = ((JTextField) txtDatedebut.getDateEditor().getUiComponent()).getText();*/
+          String datedeb = txDatedebut.getText();
             int jourd = Integer.parseInt(datedeb.substring(0, 2)); //substring permet de délimiter les nombres que l'on prend de la chaine de caract
             int moisd = Integer.parseInt(datedeb.substring(4, 5));
             int and = Integer.parseInt(datedeb.substring(6));
 
             LocalDate datedebut = LocalDate.of(and, moisd, jourd);
 
-            String datef = ((JTextField) txtDatefin.getDateEditor().getUiComponent()).getText();
+           /* String datef = ((JTextField) txtDatefin.getDateEditor().getUiComponent()).getText();*/
+            String datef = txDatefin.getText();
             int jourf = Integer.parseInt(datef.substring(0, 2)); //substring permet de délimiter les nombres que l'on prend de la chaine de caract
             int moisf = Integer.parseInt(datef.substring(4, 5));
             int anf = Integer.parseInt(datef.substring(6));
@@ -270,17 +245,16 @@ public class CreateSessioncours extends javax.swing.JPanel {
             LocalDate datefin = LocalDate.of(anf, moisf, jourf);
 
             int nbreinscrits = Integer.parseInt(txtNbreinscrits.getText());
-            
-            //int idlocal = Integer.parseInt(txtIdlocal.getText());
 
+            //int idlocal = Integer.parseInt(txtIdlocal.getText());
             int pos = comboIdlocal.getSelectedIndex();
             Local loc = loc1.get(pos);
-            System.out.println(loc.getIdlocal());
+            //System.out.println(loc.getIdlocal());
 
             //int idcours = Integer.parseInt(txtIdcours.getText());
             int pos1 = comboIdcours.getSelectedIndex();
             Cours co = co1.get(pos1);
-            System.out.println(co.getIdcours());
+           // System.out.println(co.getIdcours());
 
             Sessioncours ssc = new Sessioncours(0, datedebut, datefin, nbreinscrits, loc.getIdlocal(), co.getIdcours());
 
@@ -312,8 +286,8 @@ public class CreateSessioncours extends javax.swing.JPanel {
     private javax.swing.JLabel lbIdform;
     private javax.swing.JLabel lbIdlocal;
     private javax.swing.JLabel lbNbreinscrits;
-    private com.toedter.calendar.JDateChooser txtDatedebut;
-    private com.toedter.calendar.JDateChooser txtDatefin;
+    private javax.swing.JFormattedTextField txDatedebut;
+    private javax.swing.JFormattedTextField txDatefin;
     private javax.swing.JTextField txtIdsesscours;
     private javax.swing.JTextField txtNbreinscrits;
     // End of variables declaration//GEN-END:variables

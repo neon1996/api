@@ -21,19 +21,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbIdform" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Component id="txtIdsesscours" min="-2" pref="70" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="lbDatedebut" min="-2" pref="55" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                      <Component id="txtDatedebut" min="-2" pref="100" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lbDatedebut" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lbNbreinscrits" min="-2" max="-2" attributes="0"/>
@@ -45,10 +36,20 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="butCreationSessioncours" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtNbreinscrits" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                          <Component id="txtDatefin" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                           <Component id="comboIdlocal" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="comboIdcours" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="txDatefin" alignment="1" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lbIdform" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txDatedebut" max="32767" attributes="0"/>
+                                      <Component id="txtIdsesscours" pref="70" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -59,7 +60,7 @@
                       <Component id="lb1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="176" max="32767" attributes="0"/>
+              <EmptySpace pref="210" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,15 +74,15 @@
                   <Component id="lbIdform" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtIdsesscours" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lbDatedebut" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDatedebut" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbDatedebut" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txDatedebut" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lbDatefin" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDatefin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbDatefin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txDatefin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -100,7 +101,7 @@
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="butCreationSessioncours" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="60" max="32767" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -156,16 +157,6 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="txtDatedebut">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
-      </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="txtDatefin">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JComboBox" name="comboIdlocal">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -198,6 +189,20 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txDatedebut">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="dd-MM-yyyy" subtype="-1" type="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txDatefin">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="dd-MM-yyyy" subtype="-1" type="1"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

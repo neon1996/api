@@ -136,7 +136,6 @@ public class RechercheIDCours extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
@@ -156,7 +155,8 @@ public class RechercheIDCours extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(butMajCours)
                         .addGap(41, 41, 41)
-                        .addComponent(butSupCours)))
+                        .addComponent(butSupCours))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

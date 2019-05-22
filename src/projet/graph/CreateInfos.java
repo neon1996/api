@@ -5,6 +5,8 @@
  */
 package projet.graph;
 
+import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -34,70 +36,44 @@ public class CreateInfos extends javax.swing.JPanel {
     DefaultComboBoxModel dlm1 = new DefaultComboBoxModel();
 
     public void comboFormateur() {
-        /*try {
-            fo1 = (List<Formateur>) formateurDAO.aff_comboFormateur();
-
-            // System.out.println(loc1); // affic controle output
-            for (int i = 0; i < fo1.size(); i++) {
-                dlm.addElement(fo1.get(i).getIdform());
-
-            }
-            comboIdform.setModel(dlm); // modifie le model du combo box afin d'afficher la liste
-
-        } catch (Exception e) {
-            System.out.println("Exception" + e);
-        }*/
-        
+       
         try {
             fo1 = formateurDAO.aff_comboFormateur();
-
             if (comboIdform != null) {
                 comboIdform.removeAllItems();
-
             }
-            System.out.println(fo1);
-            for (int i = 0; i < fo1.size(); i++) {
-                dlm.addElement(fo1.get(i).toStringComboForm());
-
+            Iterator<Formateur> itform = fo1.iterator();
+            while (itform.hasNext()) {
+                Formateur fo = itform.next();
+                dlm.addElement(fo.toStringComboForm());
             }
+            
             comboIdform.setModel(dlm);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
         }
+
 
     }
 
     public void comboSessioncours() {
-     /*   try {
-            sco1 = (List<Sessioncours>) sessioncoursDAO.aff_comboSessioncours();
-
-            // System.out.println(loc1); // affic controle output
-            for (int i = 0; i < sco1.size(); i++) {
-                dlm1.addElement(sco1.get(i).getIdsesscours());
-
-            }
-            comboIdsesscours.setModel(dlm1); // modifie le model du combo box afin d'afficher la liste
-
-        } catch (Exception e) {
-            System.out.println("Exception" + e);
-        }*/
-                
-                try {
+     
+     
+     try {
             sco1 = sessioncoursDAO.aff_comboSessioncours();
-
             if (comboIdsesscours != null) {
                 comboIdsesscours.removeAllItems();
-
             }
-            System.out.println(sco1);
-            for (int i = 0; i < sco1.size(); i++) {
-                dlm1.addElement(sco1.get(i).toStringComboSess());
-
+            Iterator<Sessioncours> itseccs = sco1.iterator();
+            while (itseccs.hasNext()) {
+                Sessioncours sco = itseccs.next();
+                dlm1.addElement(sco.toStringComboSess());
             }
+            
             comboIdsesscours.setModel(dlm1);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
         }
 
